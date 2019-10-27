@@ -7,7 +7,7 @@ export default class Homepage extends Component {
   render() {
     return (
         <main>
-          <Videos />
+          <Videos {...this.props}/>
         </main>
     )
   }

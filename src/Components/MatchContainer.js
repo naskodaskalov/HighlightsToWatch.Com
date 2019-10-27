@@ -5,6 +5,11 @@ import 'moment-timezone'
 import * as moment from 'moment'
 
 export default class MatchContainer extends Component {
+    constructor (props) {
+        super(props)
+
+        this.showDetailsPage = this.showDetailsPage.bind(this)
+    }
     showEvent(e) {
         let el = e.target
         if (el.firstElementChild != null && el.firstElementChild.tagName.toLowerCase() === "button") {
@@ -12,10 +17,15 @@ export default class MatchContainer extends Component {
         }
     }
 
-checkGame(date) {
-    let newDate = moment(date).add("1", "hour").add("50", "minutes")
-    return newDate > moment()
-}
+    checkGame(date) {
+        let newDate = moment(date).add("1", "hour").add("50", "minutes")
+        return newDate > moment()
+    }
+
+    showDetailsPage(e) {
+        let dataset = e.target.dataset
+        this.props.history.push(`/match/${dataset.date.split('T')[0] + '/' + (dataset.title)}`)
+    }
 
     render() {
         return (
@@ -44,6 +54,14 @@ checkGame(date) {
                             <ListGroup.Item key={index} data-matchname={this.props.video.title} data-video={v.embed} data-videotitle={v.title} onClick={this.props.handleClickEvent} className='highlights'>{v.title}</ListGroup.Item>
                             ))}
                         </ListGroup>
+                        
+                    <Button
+                        className='mt-3 hltw-btn'
+                        data-date={this.props.video.date}
+                        data-title={this.props.video.title}
+                        onClick={this.showDetailsPage}>
+                        View details
+                    </Button>
                         </Col>
                     </Row>
                 </Card.Body>

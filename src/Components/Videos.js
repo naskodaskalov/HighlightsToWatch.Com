@@ -91,7 +91,6 @@ export default class Videos extends Component {
         this.saveCountries()
       })
       .then(() => {
-        console.log(this.state.videos)
         this.sliceVideoArray(this.state.videos, true)
       })
       .then(() => {
@@ -204,6 +203,7 @@ export default class Videos extends Component {
     const videos = this.state.videosOnPage
     let videosData = videos.map((video, index) => (
       <MatchContainer
+        {...this.props}
         key={index}
         video={video}
         handleClickEvent={this.showVideo}
