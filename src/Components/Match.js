@@ -113,10 +113,10 @@ export default class Match extends Component {
         
         <div className="league-name">League: {gameDetails.competition.name}</div>
             <Row>
-                <Col xs={12}>
+                <Col md={6} lg={6} xs={12}>
                 <Card.Img src={gameDetails.thumbnail} className='mt-3' alt={gameDetails.title} />
                 </Col>
-                <Col className='pt-3' xs={12}>
+                <Col className='pt-3' md={6} lg={6} xs={12}>
                     {gameDetails.videos.map((v, index) => (
                       <Accordion key={index} onClick={this.showEvent.bind(this)}>
                       <Card className='bordered-card'>
@@ -142,6 +142,7 @@ export default class Match extends Component {
       <div>
         <Helmet>
           <title>{this.state.gameDetails.competition.name}: {this.state.match} ({this.state.date})</title>
+          <meta property="og:image" content={this.state.gameDetails.thumbnail} />
         </Helmet>
         <Button onClick={this.goBack} className='hltw-btn ml-3'>Go back</Button>
         {game}
