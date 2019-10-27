@@ -48,7 +48,7 @@ export default class Videos extends Component {
      resolve(axios('https://www.scorebat.com/video-api/v1/').then(response => {
       const gamesFromServer = response.data
       let d = new Date().toLocaleDateString()
-      let fd = d.split("/")[2] + "-" + d.split("/")[0] + "-" + d.split("/")[1]
+      let fd = d.split("/")[2] + "-" + d.split("/")[1] + "-" + d.split("/")[0]
       let todaysGames = gamesFromServer
                           .filter(m => m.date.split("T")[0] === fd)
       return todaysGames
