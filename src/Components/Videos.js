@@ -4,6 +4,8 @@ import CountrySelector from './CountrySelector'
 import MatchContainer from './MatchContainer'
 import VideoModal from './VideoModal'
 import axios from 'axios'
+import 'moment-timezone'
+import * as moment from 'moment'
 
 export default class Videos extends Component {
   constructor (props) {
@@ -79,21 +81,34 @@ export default class Videos extends Component {
           for (let t = 0; t < Object.values(currentDate).length; t++) {
             const p = Object.values(currentDate)[t];
             games.push(p)
-            
           } 
         }
+        let sortedGames = this.sortGamesByDateAndTime(games)
 
-        this.setState({ videos: games })
+        this.setState({ videos: sortedGames })
       })
       .then(() => {
         this.saveCountries()
       })
       .then(() => {
+        console.log(this.state.videos)
         this.sliceVideoArray(this.state.videos, true)
       })
       .then(() => {
         this.setState({ loading: false })
       })
+  }
+
+  sortGamesByDateAndTime(games) {
+    let sortedGames = games.sort((a, b) => {
+      if (moment(a.date) < moment(b.date)) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+
+    return sortedGames
   }
 
   handleCountryChange(e) {
