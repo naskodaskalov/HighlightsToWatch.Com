@@ -45,10 +45,10 @@ export default class MatchContainer extends Component {
                 <Accordion.Collapse eventKey={this.props.video.title}>
                 <Card.Body>
                     <Row>
-                        <Col>
+                        <Col xs={12}>
                         <Card.Img src={this.props.video.thumbnail} className='videoimg' alt={this.props.video.title} />
                         </Col>
-                        <Col>
+                        <Col xs={12}>
                         <ListGroup variant="flush">
                             {this.props.video.videos.map((v, index) => (
                             <ListGroup.Item key={index} data-matchname={this.props.video.title} data-video={v.embed} data-videotitle={v.title} onClick={this.props.handleClickEvent} className='highlights'>{v.title}</ListGroup.Item>

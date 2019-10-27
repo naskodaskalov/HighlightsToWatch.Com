@@ -6,6 +6,8 @@ import * as moment from 'moment'
 import axios from 'axios'
 import Helmet from 'react-helmet'
 
+import '../App.css'
+
 export default class Match extends Component {
   constructor (props) {
     super(props)
@@ -111,10 +113,10 @@ export default class Match extends Component {
         
         <div className="league-name">League: {gameDetails.competition.name}</div>
             <Row>
-                <Col>
+                <Col xs={12}>
                 <Card.Img src={gameDetails.thumbnail} className='mt-3' alt={gameDetails.title} />
                 </Col>
-                <Col className='pt-3'>
+                <Col className='pt-3' xs={12}>
                     {gameDetails.videos.map((v, index) => (
                       <Accordion key={index} onClick={this.showEvent.bind(this)}>
                       <Card className='bordered-card'>

@@ -165,3 +165,9 @@ h5 {
   background-color: #061454 !important;
   color: #fff;
 }
+
+@media only screen and (max-width: 400px) {
+  .game-details-card > .row {
+      flex-direction: column !important;
+  }
+}
