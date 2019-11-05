@@ -27,7 +27,7 @@ export default class Match extends Component {
     let gameDate = moment(this.state.date)
     let today = moment()
     let isToday = moment(today).isSame(gameDate, 'date')
-
+    console.log(isToday)
     this.setState({
       isToday
     })
@@ -62,10 +62,9 @@ export default class Match extends Component {
     return new Promise((resolve) => {
       resolve(axios('https://www.scorebat.com/video-api/v1/').then(response => {
        const gamesFromServer = response.data
-       let d = new Date().toLocaleDateString()
-       let fd = d.split("/")[2] + "-" + d.split("/")[0] + "-" + d.split("/")[1]
+       let d = moment().format("YYYY-MM-DD")
        let todaysGames = gamesFromServer
-                           .filter(m => m.date.split("T")[0] === fd)
+                           .filter(m => m.date.split("T")[0] === d)
        return todaysGames
      }))
      })

@@ -3,12 +3,14 @@ import './App.css'
 
 import Routes from './Config/Routes'
 import Navigation from './Components/Navigation'
+import Footer from './Components/Footer'
 
 function App () {
   return (
     <div className='App container-fluid'>
       <Navigation />
       <Routes />
+      <Footer />
     </div>
 
   )

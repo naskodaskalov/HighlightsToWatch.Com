@@ -2,6 +2,32 @@
 
 :focus {outline:0 !important;}
 
+.footer {
+  background-color: #061454;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px 10px;
+}
+
+.footer > div {
+  width: 35%;
+}
+
+.creator {
+  text-align: right;
+}
+
+.footer > div> a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer > div > a:hover {
+  text-decoration: underline;
+}
+
 .App.container-fluid {
   padding: 0;
   margin: 0;
