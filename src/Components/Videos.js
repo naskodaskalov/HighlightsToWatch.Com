@@ -127,6 +127,13 @@ export default class Videos extends Component {
         }
     }
 
+    countries.sort((a,b) => {
+      if (a > b) {
+        return 1
+      } else {
+        return -1
+      }
+    })
     this.setState({ countries })
   }
 

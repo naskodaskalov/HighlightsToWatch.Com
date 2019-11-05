@@ -11,6 +11,49 @@
   padding: 20px 10px;
 }
 
+.logo {
+  width: 100%;
+  max-width: 120px;
+  margin-right: 20px;
+}
+
+.league-logo {
+max-width: 50px;
+width: 100%;
+margin: 0 20px;
+border-bottom: 3px solid #fff;
+padding: 5px;
+transition: all 0.2s;
+}
+
+.league-logo:hover {
+  border-bottom: 3px solid #061454;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.info-text {
+  text-transform: uppercase;
+  display: inline;
+  vertical-align: middle;
+  padding-bottom: 5px;
+}
+
+#basic-navbar-nav > div {
+  text-align: center;
+}
+
+#basic-navbar-nav > div > .league-logo {
+  margin: 10px 25px;
+}
+
+#basic-navbar-nav > div > .info-text {
+  margin-top: 20px;
+  display: block;
+}
+
 .footer > div {
   width: 35%;
 }
@@ -57,8 +100,7 @@
 
 nav {
   width: 100%;
-  background-color: #061454;
-  color: #FFF;
+  color: #061454 !important;
   padding-top: 10px;
 }
 .btn-link {
@@ -94,7 +136,7 @@ main {
 
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .nav-link:hover {
-  color: #fff;
+  color: #061454;
 }
 
 .navbar-toggler-icon {
@@ -175,7 +217,7 @@ h5 {
 }
 
 .navbar-light .navbar-brand {
-  color: #FFF !important;
+  color: #061454 !important;
 }
 
 .dropdown > button {
@@ -197,3 +239,20 @@ h5 {
       flex-direction: column !important;
   }
 }
+
+
+@media only screen and (max-width: 950px) {
+ 
+.xs-hidden {
+  display: none;
+}
+
+}
+
+@media only screen and (min-width: 950px) {
+ 
+  .xs-shown {
+    display: none;
+  }
+  
+  }
