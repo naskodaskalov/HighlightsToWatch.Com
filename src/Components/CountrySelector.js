@@ -38,7 +38,7 @@ export default class CountrySelector extends Component{
     return (
       <DropdownButton
         id="dropdown-basic-button"
-        className="text-center"
+        className="text-right mb-4"
         title={this.props.selectedCountry.length > 0 ? `Filter by country: ${this.props.selectedCountry}` : 'Filter by country'}>
         <Dropdown.Item onClick={this.showAllVideos}>Show all</Dropdown.Item>
         {countries}

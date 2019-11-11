@@ -3,6 +3,7 @@ import { Row, Accordion, Pagination, Spinner } from 'react-bootstrap'
 import CountrySelector from './CountrySelector'
 import MatchContainer from './MatchContainer'
 import VideoModal from './VideoModal'
+import Search from './Search'
 import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
@@ -13,6 +14,7 @@ export default class Videos extends Component {
 
     this.state = {
       videos: [],
+      videosTitles: [],
       matchesDb: [],
       show: false,
       hide: true,
@@ -37,7 +39,6 @@ export default class Videos extends Component {
     this.showVideo = this.showVideo.bind(this)
     this.sliceVideoArray = this.sliceVideoArray.bind(this)
     this.showNextPage = this.showNextPage.bind(this)
-    this.saveCountries = this.saveCountries.bind(this)
     this.showFirstPage = this.showFirstPage.bind(this)
   }
 
@@ -81,11 +82,16 @@ export default class Videos extends Component {
           } 
         }
         let sortedGames = this.sortGamesByDateAndTime(games)
+        let videosTitles = []
 
+        for (let i = 0; i < sortedGames.length; i++) {
+          const element = sortedGames[i];
+
+          videosTitles.push(element.title)
+          
+        }
         this.setState({ videos: sortedGames })
-      })
-      .then(() => {
-        this.saveCountries()
+        this.setState({ videosTitles })
       })
       .then(() => {
         this.sliceVideoArray(this.state.videos, true)
@@ -105,30 +111,6 @@ export default class Videos extends Component {
     })
 
     return sortedGames
-  }
-
-  saveCountries() {
-    // let videos = this.state.videos
-    
-    // let countries = []
-    //   for (let i = 0; i < videos.length; i++) {
-    //     let country = videos[i].competition.name.split(':')[0]
-    //     if (!countries.includes(country)) {
-    //       countries.push(country)
-    //     }
-    // }
-
-    // countries.sort((a,b) => {
-    //   if (a > b) {
-    //     return 1
-    //   } else {
-    //     return -1
-    //   }
-    // })
-
-    
-
-    //this.setState({ countries })
   }
 
   sliceVideoArray(data, hasPagination) {
@@ -193,7 +175,7 @@ export default class Videos extends Component {
     })
     window.scrollTo(0,0)
   }
-  
+
   handleCountryChange(e) {
     const selectedCountry = e.target.innerText
     this.setState({ league: selectedCountry })
@@ -254,12 +236,15 @@ export default class Videos extends Component {
 
     return (
       <div>
+        <div className='controls'>
+        <Search {...this.props} videosData={this.state.videos} />
         <CountrySelector
         {...this.props}
           countries={this.state.countries}
           selectedCountry={this.state.selectedCountry}
           handleCountryChange={this.handleCountryChange.bind(this)}
         />
+        </div>
         <div className='container'>
           <Row className='videos-container'>
             <Accordion className="w-100 text-left">

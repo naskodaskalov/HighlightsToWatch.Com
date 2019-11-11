@@ -38,10 +38,17 @@ h4 {
 
 .link:hover {
   cursor: pointer;
-
 }
 
 .league-logo:hover {
+  border-bottom: 3px solid #061454;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.activeLeague > .league-logo {
   border-bottom: 3px solid #061454;
   background-color: #e9ecef;
   border-radius: 5px;
@@ -54,6 +61,45 @@ h4 {
   display: inline;
   vertical-align: middle;
   padding-bottom: 5px;
+}
+
+.controls { 
+  width: 60%;
+  margin: auto;
+}
+
+.controls > div {
+  display: inline-block;
+}
+
+.controls > div.dropdown {
+  width: 30%;
+}
+
+.controls > div.rbt {
+  width: 70%;
+}
+
+.rbt-input-hint-container input {
+  background-color: #fff;
+    border: 1px solid #061454;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #061454;
+    
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #061454;
+}
+
+.rbt-menu {
+  border: 1px solid #061454;
+}
+
+.form-control {
+  height: auto;
+  margin: auto;
 }
 
 #basic-navbar-nav > div {
@@ -260,6 +306,30 @@ h5 {
  
 .xs-hidden {
   display: none;
+}
+.controls {
+  width: 90%;
+}
+.controls > div {
+  display: block;
+}
+
+.controls > div.dropdown {
+  width: 100%;
+  margin: auto;
+}
+
+.controls > div.rbt {
+  width: 100%;
+}
+
+#dropdown-basic-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.videos-container {
+  margin-top: 10px;
 }
 
 }
