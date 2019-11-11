@@ -38,8 +38,6 @@ export default class Videos extends Component {
     this.sliceVideoArray = this.sliceVideoArray.bind(this)
     this.showNextPage = this.showNextPage.bind(this)
     this.saveCountries = this.saveCountries.bind(this)
-    this.handleCountryChange = this.handleCountryChange.bind(this)
-    this.showAllVideos = this.showAllVideos.bind(this)
     this.showFirstPage = this.showFirstPage.bind(this)
   }
 
@@ -109,32 +107,28 @@ export default class Videos extends Component {
     return sortedGames
   }
 
-  handleCountryChange(e) {
-    const selectedCountry = e.target.innerText
-    this.setState({ selectedCountry })
-    var filteredData = this.state.videos.filter(a => a.competition.name.split(':')[0] === selectedCountry)
-    this.sliceVideoArray(filteredData, false)
-  }
-
   saveCountries() {
-    let videos = this.state.videos
+    // let videos = this.state.videos
     
-    let countries = []
-      for (let i = 0; i < videos.length; i++) {
-        let country = videos[i].competition.name.split(':')[0]
-        if (!countries.includes(country)) {
-          countries.push(country)
-        }
-    }
+    // let countries = []
+    //   for (let i = 0; i < videos.length; i++) {
+    //     let country = videos[i].competition.name.split(':')[0]
+    //     if (!countries.includes(country)) {
+    //       countries.push(country)
+    //     }
+    // }
 
-    countries.sort((a,b) => {
-      if (a > b) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-    this.setState({ countries })
+    // countries.sort((a,b) => {
+    //   if (a > b) {
+    //     return 1
+    //   } else {
+    //     return -1
+    //   }
+    // })
+
+    
+
+    //this.setState({ countries })
   }
 
   sliceVideoArray(data, hasPagination) {
@@ -199,10 +193,11 @@ export default class Videos extends Component {
     })
     window.scrollTo(0,0)
   }
-
-  showAllVideos() {
-    this.setState({ selectedCountry: '' })
-    this.sliceVideoArray(this.state.videos, true)
+  
+  handleCountryChange(e) {
+    const selectedCountry = e.target.innerText
+    this.setState({ league: selectedCountry })
+    this.props.history.push(`/league/${selectedCountry.toLowerCase()}`)
   }
 
   render() {
@@ -260,10 +255,10 @@ export default class Videos extends Component {
     return (
       <div>
         <CountrySelector
+        {...this.props}
           countries={this.state.countries}
-          handleCountryChange={this.handleCountryChange}
           selectedCountry={this.state.selectedCountry}
-          showAll={this.showAllVideos}
+          handleCountryChange={this.handleCountryChange.bind(this)}
         />
         <div className='container'>
           <Row className='videos-container'>

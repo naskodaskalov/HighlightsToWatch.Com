@@ -34,7 +34,7 @@ export default class MatchContainer extends Component {
                 <Accordion.Toggle as={Button} variant="link" eventKey={this.props.video.title} >
                 {this.props.video.side1.name} vs {this.props.video.side2.name}
                 <span className="match-date">
-                    <Moment format="DD.MM.YYYY HH:MM">{this.props.video.date}</Moment>
+                    <Moment format="DD.MM.YYYY hh:mm">{this.props.video.date}</Moment>
                 {/* { (this.props.video.date).split("T")[0] } { (this.props.video.date).split("T")[1].split("+")[0] } */}
                 <Badge variant={ this.checkGame() ? "warning" : "success" }>{ this.checkGame(this.props.video.date) ? "Live" : "" }</Badge>
                 </span>

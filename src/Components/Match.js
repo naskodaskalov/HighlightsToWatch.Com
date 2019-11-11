@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BackButton from './Common/BackButton'
 import { Row, Col, Card, Accordion, Button, Spinner } from 'react-bootstrap'
 import 'moment-timezone'
 import Moment from 'react-moment'
@@ -19,15 +20,12 @@ export default class Match extends Component {
       gameDetails: [],
       isLoading: true
     }
-
-    this.goBack = this.goBack.bind(this)
   }
 
   componentDidMount () {
     let gameDate = moment(this.state.date)
     let today = moment()
     let isToday = moment(today).isSame(gameDate, 'date')
-    console.log(isToday)
     this.setState({
       isToday
     })
@@ -87,10 +85,6 @@ export default class Match extends Component {
       }
   }
 
-  goBack() {
-    this.props.history.push('/')
-  }
-
   render() {
     if (this.state.isLoading) {
       return (
@@ -143,7 +137,7 @@ export default class Match extends Component {
           <title>{this.state.gameDetails.competition.name}: {this.state.match} ({this.state.date})</title>
           <meta property="og:image" content={this.state.gameDetails.thumbnail} />
         </Helmet>
-        <Button onClick={this.goBack} className='hltw-btn ml-3'>Go back</Button>
+        <BackButton {...this.props} />
         {game}
       </div>
     )

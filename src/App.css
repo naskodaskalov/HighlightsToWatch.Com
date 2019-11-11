@@ -26,6 +26,21 @@ padding: 5px;
 transition: all 0.2s;
 }
 
+h4 {
+  color: #061454;
+  text-align: center;
+}
+
+.link {
+  text-decoration: underline;
+  color: #061454;
+}
+
+.link:hover {
+  cursor: pointer;
+
+}
+
 .league-logo:hover {
   border-bottom: 3px solid #061454;
   background-color: #e9ecef;
