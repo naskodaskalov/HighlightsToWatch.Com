@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "jquery": "3.4.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "nightmare": "^3.0.2",
@@ -14,7 +15,8 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-moment": "^0.9.6",
-    "react-router-dom": "5.0.1"
+    "react-router-dom": "5.0.1",
+    "toastr": "2.1.4"
   },
   "devDependencies": {
     "react-scripts": "3.1.1"

@@ -38,7 +38,6 @@ export default class MatchContainer extends Component {
                 {/* { (this.props.video.date).split("T")[0] } { (this.props.video.date).split("T")[1].split("+")[0] } */}
                 <Badge variant={ this.checkGame() ? "warning" : "success" }>{ this.checkGame(this.props.video.date) ? "Live" : "" }</Badge>
                 </span>
-                
                 <div className="league-name">League: {this.props.video.competition.name}</div>
                 </Accordion.Toggle>
                 </Card.Header>

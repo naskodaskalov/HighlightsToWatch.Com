@@ -193,6 +193,7 @@ nav {
 
 main {
   text-align: center;
+  min-height: 65.5vh;
 }
 
 .navbar-light .navbar-nav .nav-link,
@@ -273,6 +274,21 @@ h5 {
   animation: spinner-border 1.25s linear infinite;
 }
 
+.contact-form {
+  margin: auto;
+  width: 50%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #061454;
+}
+
+.inner-container {
+  width: 70%;
+  margin: auto;
+}
+
 .videos-container {
   margin-top: 50px;
 }
@@ -293,6 +309,20 @@ h5 {
 .dropdown > button:focus {
   background-color: #061454 !important;
   color: #fff;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul li {
+  list-style-type: none;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 400px) {

@@ -2,14 +2,6 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 
 export default class VideoModal extends Component {
-  // constructor (props){
-  //   super(props)
-    
-  //   this.state = {
-  //     show: props.show
-  //   }
-  // }
-
   render() {
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>

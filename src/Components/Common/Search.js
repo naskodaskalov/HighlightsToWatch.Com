@@ -8,7 +8,6 @@ export default class Search extends Component {
       };
     
       showResult(e) {
-        // /match/2019-11-10/Guimaraes%20-%20Braga
         const date = e[0].date.split('T')[0]
         const title = e[0].title
         this.props.history.push(`/match/${date}/${title}`)
