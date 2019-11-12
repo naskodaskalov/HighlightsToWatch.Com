@@ -3,7 +3,7 @@ import { Row, Accordion, Pagination, Spinner } from 'react-bootstrap'
 import CountrySelector from './CountrySelector'
 import MatchContainer from './MatchContainer'
 import VideoModal from './VideoModal'
-import Search from './Search'
+import Search from './Common/Search'
 import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
@@ -237,7 +237,10 @@ export default class Videos extends Component {
     return (
       <div>
         <div className='controls'>
-        <Search {...this.props} videosData={this.state.videos} />
+        <Search
+          {...this.props}
+          placeholder="Search in all games"
+          videosData={this.state.videos} />
         <CountrySelector
         {...this.props}
           countries={this.state.countries}

@@ -32,7 +32,7 @@ export default class Search extends Component {
               minLength="2"
               options={this.props.videosData}
               onChange={this.showResult.bind(this)}
-              placeholder="Search for game..."
+              placeholder={this.props.placeholder}
               renderMenuItemChildren={(option) => (
                 <div>
                   {option.title}

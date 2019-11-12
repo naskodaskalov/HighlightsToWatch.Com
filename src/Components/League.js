@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BackButton from './Common/BackButton'
 import MatchContainer from './MatchContainer'
 import CountrySelector from './CountrySelector'
+import Search from './Common/Search'
 import { Row, Accordion,  Spinner } from 'react-bootstrap'
 import VideoModal from './VideoModal'
 import 'moment-timezone'
@@ -151,20 +152,22 @@ export default class League extends Component {
               handleClickEvent={this.showVideo}
             />
           ))
-
         return (
             <div>
                 <Helmet>
                 <title>Highlights To Watch: {this.state.league.toUpperCase()}</title>
                 </Helmet>
                 <BackButton {...this.props} />
-                <div className='container pl-4 pr-4'>
+                <div className='controls'>
+                    <Search {...this.props} videosData={this.state.gamesByLeague} placeholder={`Search for game in ${league}`} />
                     <CountrySelector
                     {...this.props}
                     countries={this.state.countries}
                     selectedCountry={this.state.league.toUpperCase()}
                     handleCountryChange={this.handleCountryChange.bind(this)}
                     />
+                </div>
+                <div className='container pl-4 pr-4'>
                     <Row className='videos-container'>
                         <h4 className='mb-4'>Highlights from {league}</h4>
                         <Accordion className="w-100 text-left">
