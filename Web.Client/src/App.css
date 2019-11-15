@@ -183,6 +183,32 @@ nav {
   font-size: 14px;
 }
 
+.column-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.videos-container {
+  width: 70%;
+  margin-top: 50px;
+}
+
+.videos-container .container {
+  width: 90%;
+}
+
+.competition-name {
+  text-align: left;
+}
+
+.livescores-container {
+  padding: 0 10px;
+  margin-top: 70px;
+  width: 30%;
+}
+
 .card-header:hover {
   cursor: pointer;
   border-left: 5px solid #061454;
@@ -224,6 +250,11 @@ main {
 
 body {
   font-family: 'Oswald', sans-serif;
+}
+
+.table td, .table th {
+  padding: 2px;
+  border-top: 3px solid #061454;
 }
 
 .videoimg {
@@ -287,10 +318,6 @@ h5 {
 .inner-container {
   width: 70%;
   margin: auto;
-}
-
-.videos-container {
-  margin-top: 50px;
 }
 
 .navbar-light .navbar-brand {

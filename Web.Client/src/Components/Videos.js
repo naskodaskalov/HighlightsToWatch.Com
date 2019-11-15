@@ -235,7 +235,7 @@ export default class Videos extends Component {
     }
 
     return (
-      <div>
+      <div className='videos-container'>
         <div className='controls'>
         <Search
           {...this.props}
@@ -249,7 +249,7 @@ export default class Videos extends Component {
         />
         </div>
         <div className='container'>
-          <Row className='videos-container'>
+          <Row className=''>
             <Accordion className="w-100 text-left">
                       {videosData}
             </Accordion>

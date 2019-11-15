@@ -21,6 +21,13 @@ export default class CountrySelector extends Component{
           const element = Object.values(response.data)[i];
           countries.push(element)
         }
+        countries.sort(function (a, b) {
+          if (a.country_name > b.country_name) {
+              return 1;
+          } else {
+              return -1;
+          }
+      })
         this.setState({ countries })
      }))
      })
@@ -33,7 +40,7 @@ export default class CountrySelector extends Component{
 
   render() {
     let countries = this.state.countries.map((country, index) => (
-      <Dropdown.Item key={index} onClick={this.props.handleCountryChange} data-league={country}>{country}</Dropdown.Item>
+      <Dropdown.Item key={index} onClick={this.props.handleCountryChange} data-league={country.country_name}>{country.country_name}</Dropdown.Item>
     ))
     return (
       <DropdownButton

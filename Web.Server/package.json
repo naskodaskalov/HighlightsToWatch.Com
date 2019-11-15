@@ -1,0 +1,15 @@
+{
+  "name": "highlightstowatch-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "ND",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "firebase": "7.2.0",
+    "moment": "2.24.0",
+    "node-cron": "2.0.3",
+    "node-fetch": "2.6.0"
+  }
+}

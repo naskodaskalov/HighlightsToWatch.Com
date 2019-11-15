@@ -153,7 +153,7 @@ export default class League extends Component {
             />
           ))
         return (
-            <div>
+            <main>
                 <Helmet>
                 <title>Highlights To Watch: {this.state.league.toUpperCase()}</title>
                 </Helmet>
@@ -180,7 +180,7 @@ export default class League extends Component {
                         match={this.state.selectedVideo}
                     />
                 </div>
-            </div>
+            </main>
         )
     }
 }
