@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const express = require("express");
 const firebase = require("firebase");
 const fetch = require("node-fetch");
-const port = process.env.port || 8000
+const port = process.env.PORT || 3303
 const moment = require("moment")
 
 const app = require('express')()
