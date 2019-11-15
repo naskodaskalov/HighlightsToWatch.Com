@@ -55,12 +55,21 @@ let updated = ''
         let a = games
         let b = gamesDB
     
+        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
         if (a.length > b.length) {
             let missingGames = [].concat(
                 a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title)),
                 b.filter(obj2 => a.every(obj1 => obj2.title !== obj1.title))
             );
-            let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+            addedGames = missingGames.length
+            for (let i = 0; i < missingGames.length; i++) {
+                const element = missingGames[i];
+                firebase.database().ref('/matches/' + date).push(element)
+            }
+        } else {
+            let missingGames = [].concat(
+                a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title))
+            );
             addedGames = missingGames.length
             for (let i = 0; i < missingGames.length; i++) {
                 const element = missingGames[i];
