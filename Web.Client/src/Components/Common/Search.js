@@ -29,6 +29,7 @@ export default class Search extends Component {
               filterBy={filterByCallback}
               labelKey="title"
               minLength="2"
+              id="search-typeahead"
               options={this.props.videosData}
               onChange={this.showResult.bind(this)}
               placeholder={this.props.placeholder}

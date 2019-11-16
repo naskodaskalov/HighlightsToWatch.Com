@@ -7,6 +7,7 @@ import Search from './Common/Search'
 import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
+import Livescores from './Livescores'
 
 export default class Videos extends Component {
   constructor (props) {
@@ -235,7 +236,7 @@ export default class Videos extends Component {
     }
 
     return (
-      <div className='videos-container'>
+      <div className=''>
         <div className='controls'>
         <Search
           {...this.props}
@@ -248,8 +249,10 @@ export default class Videos extends Component {
           handleCountryChange={this.handleCountryChange.bind(this)}
         />
         </div>
-        <div className='container'>
-          <Row className=''>
+        <div className='column-container'>
+        <Livescores />
+        <div className='videos-container'>
+        <Row className=''>
             <Accordion className="w-100 text-left">
                       {videosData}
             </Accordion>
@@ -262,6 +265,8 @@ export default class Videos extends Component {
           <div className='pagination mt-3 justify-content-center'>
             {slicedPagination}
           </div>
+        </div>
+          
         </div>
       </div>
     )

@@ -2,6 +2,20 @@
 
 :focus {outline:0 !important;}
 
+.match-tweets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.match-tweets div {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 500px;
+  overflow: auto;
+}
+
 .footer {
   background-color: #061454;
   color: #fff;
@@ -186,17 +200,14 @@ nav {
 .column-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
+  margin: auto;
   justify-content: space-between;
 }
 
 .videos-container {
-  width: 70%;
+  width: 65%;
   margin-top: 50px;
-}
-
-.videos-container .container {
-  width: 90%;
 }
 
 .competition-name {
@@ -204,9 +215,18 @@ nav {
 }
 
 .livescores-container {
-  padding: 0 10px;
-  margin-top: 70px;
+  margin-top: 50px;
   width: 30%;
+}
+
+.livescores-container .card-body {
+  padding: 10px 0;
+  max-height: 980px;
+  overflow: auto;
+}
+
+.livescores-container .accordion {
+  border-bottom: 1px solid grey;
 }
 
 .card-header:hover {
@@ -358,9 +378,23 @@ h5 {
   }
 }
 
-
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 @media only screen and (max-width: 950px) {
- 
+ .column-container {
+   flex-direction: column;
+ }
+
+ .videos-container {
+   width: 100%;
+  }
+
+  .livescores-container {
+    width: 100%;
+    margin-top: 10px;
+  }
 .xs-hidden {
   display: none;
 }
@@ -387,6 +421,21 @@ h5 {
 
 .videos-container {
   margin-top: 10px;
+}
+
+.match-tweets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.match-tweets div {
+  width: 95%;
+  margin: auto;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 300px;
+  overflow: auto;
 }
 
 }

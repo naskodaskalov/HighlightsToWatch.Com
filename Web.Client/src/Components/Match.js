@@ -6,7 +6,6 @@ import Moment from 'react-moment'
 import * as moment from 'moment'
 import axios from 'axios'
 import Helmet from 'react-helmet'
-
 import '../App.css'
 
 export default class Match extends Component {
