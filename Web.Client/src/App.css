@@ -219,10 +219,25 @@ nav {
   width: 30%;
 }
 
+.score-column {
+  width: 50px;
+}
+
 .livescores-container .card-body {
   padding: 10px 0;
   max-height: 980px;
   overflow: auto;
+}
+
+.fixtures-accordion .card-body {
+  padding: 0;
+  max-height: 100%;
+}
+
+.fixtures-accordion .card-header:hover {
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 .livescores-container .accordion {
@@ -274,6 +289,7 @@ body {
 
 .table td, .table th {
   padding: 2px;
+  font-size: 14px;
   border-top: 3px solid #061454;
 }
 
@@ -317,7 +333,7 @@ h5 {
   text-align: center;
   vertical-align: text-bottom;
   border: 1.50em solid currentColor;
-  margin-top: 50px;
+  margin: 50px auto 0;
   border-color: #061454;
   border-right-color: transparent;
   border-radius: 50%;
@@ -325,6 +341,18 @@ h5 {
   animation: spinner-border 1.25s linear infinite;
 }
 
+
+.spinner-border.fixture-spinner {
+  width: 100px;
+  border: 0.50em solid currentColor;
+  height: 100px;
+  margin: 50px auto 0;
+  border-color: #061454;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 1.25s linear infinite;
+  animation: spinner-border 1.25s linear infinite;
+}
 .contact-form {
   margin: auto;
   width: 50%;

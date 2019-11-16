@@ -9,6 +9,7 @@ import 'moment-timezone'
 import * as moment from 'moment'
 import axios from 'axios'
 import Helmet from 'react-helmet'
+import Fixtures from './Fixtures'
 
 export default class League extends Component {
     constructor (props) {
@@ -16,6 +17,7 @@ export default class League extends Component {
 
         this.state = {
             league: this.props.match.params.league,
+            leagueid: 0,
             isToday: false,
             isLoading: true,
             gamesByLeague: [],
@@ -32,9 +34,8 @@ export default class League extends Component {
     }
 
     UNSAFE_componentWillReceiveProps (newProps) {
-        console.log(newProps)
         if (newProps.match.params.league !== this.state.league) {
-            this.setState({ league: newProps.match.params.league})
+            this.setState({ league: newProps.match.params.league, isLoading: true })
         }
         this.getData()
     }
@@ -85,7 +86,7 @@ export default class League extends Component {
             }))
         })  
     }
-    
+
     getDataFromDB() {
         return new Promise((resolve) => {
         resolve(axios(`https://highlightstowatch.firebaseio.com/matches.json`).then(response => {
@@ -126,13 +127,14 @@ export default class League extends Component {
               )
         }
 
+        
+
         if (this.state.gamesByLeague.length === 0) {
             let competition = this.state.league
             return (
                 <div className='container'>
                 <CountrySelector
                     {...this.props}
-                    countries={this.state.countries}
                     selectedCountry={this.state.league.toUpperCase()}
                     handleCountryChange={this.handleCountryChange.bind(this)}
                     />
@@ -167,18 +169,21 @@ export default class League extends Component {
                     handleCountryChange={this.handleCountryChange.bind(this)}
                     />
                 </div>
-                <div className='container pl-4 pr-4'>
-                    <Row className='videos-container'>
-                        <h4 className='mb-4'>Highlights from {league}</h4>
-                        <Accordion className="w-100 text-left">
-                                {gamesByLeague}
-                        </Accordion>
-                    </Row>
-                    <VideoModal
-                        show={this.state.show}
-                        onHide={this.handleClose}
-                        match={this.state.selectedVideo}
-                    />
+                <div className="column-container">
+                    <Fixtures leaguename={league} />
+                    <div className='videos-container container pl-4 pr-4'>
+                        <Row>
+                            <h4 className='mb-4'>Highlights from {league}</h4>
+                            <Accordion className="w-100 text-left">
+                                    {gamesByLeague}
+                            </Accordion>
+                        </Row>
+                        <VideoModal
+                            show={this.state.show}
+                            onHide={this.handleClose}
+                            match={this.state.selectedVideo}
+                        />
+                    </div>
                 </div>
             </main>
         )

@@ -53,7 +53,7 @@ export default class Livescores extends Component {
                 <tr key={index}>
                     <td className='competition-name pl-3'>{match.competition_name}</td>
                     <td>{match.home_name}</td>
-                    <td>{match.score} <br /> {match.status === "IN PLAY" && match.ht_score !== "" ? "(" + match.ht_score + ")" : ""}</td>
+                    <td className='score-column'>{match.score} <br /> {match.status === "IN PLAY" && match.ht_score !== "" ? "(" + match.ht_score + ")" : ""}</td>
                     <td>{match.away_name}</td>
                     <td>
                     {match.status === "FINISHED" ?
