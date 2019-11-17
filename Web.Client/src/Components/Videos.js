@@ -77,11 +77,17 @@ export default class Videos extends Component {
         }
         for (let k = Object.values(gamesFromDb).length - 1; k >= 0; k--) {
           const currentDate = Object.values(gamesFromDb)[k];
+
+          if (Object.keys(gamesFromDb)[k] == moment(new Date()).format("MM-DD-YYYY")){
+            continue;
+          }
+
           for (let t = 0; t < Object.values(currentDate).length; t++) {
             const p = Object.values(currentDate)[t];
             games.push(p)
           } 
         }
+        
         let sortedGames = this.sortGamesByDateAndTime(games)
         let videosTitles = []
 
