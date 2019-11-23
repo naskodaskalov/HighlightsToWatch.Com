@@ -214,9 +214,23 @@ nav {
   text-align: left;
 }
 
-.livescores-container {
+.left-side-container {
   margin-top: 50px;
   width: 30%;
+}
+
+.livescores-container {
+  width: 30%;
+}
+
+.left-side-container > .livescores-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.list-group-item a {
+  color: #061454;
+
 }
 
 .score-column {

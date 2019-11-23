@@ -96,8 +96,10 @@ export default class League extends Component {
             const currentDate = Object.values(gamesFromDB)[i];
             for (let k = 0; k < Object.values(currentDate).length; k++) {
                 const element = Object.values(currentDate)[k];
-                if (element.competition.name.indexOf(this.state.league.toUpperCase()) > -1) {
-                    gamesByLeague.push(element)
+                if (element.competition != null) {
+                    if (element.competition.name.indexOf(this.state.league.toUpperCase()) > -1) {
+                        gamesByLeague.push(element)
+                    }
                 }
             }
         }

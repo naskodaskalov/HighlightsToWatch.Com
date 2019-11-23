@@ -8,6 +8,8 @@ import axios from 'axios'
 import Helmet from 'react-helmet'
 import '../App.css'
 
+import GlobalHelpers from './Common/Helpers'
+
 export default class Match extends Component {
   constructor (props) {
     super(props)
@@ -34,6 +36,18 @@ export default class Match extends Component {
     } else {
       this.getGameDetailsFromPromise(this.getDataFromDB())
     }
+
+    this.addToPopularTable()
+  }
+
+  addToPopularTable() {
+    const game = {
+      match: this.state.match,
+      date: this.state.date,
+      count: 1
+    }
+    
+    GlobalHelpers.UpdatePopularCounter(game);
   }
 
   getGameDetailsFromPromise(promise) {

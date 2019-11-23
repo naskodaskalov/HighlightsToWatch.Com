@@ -30,12 +30,11 @@ export default class MatchContainer extends Component {
     render() {
         return (
             <Card>
-                <Card.Header eventKey={this.props.video.title} onClick={this.showEvent.bind(this)}>
+                <Card.Header onClick={this.showEvent.bind(this)}>
                 <Accordion.Toggle as={Button} variant="link" eventKey={this.props.video.title} >
                 {this.props.video.side1.name} vs {this.props.video.side2.name}
                 <span className="match-date">
                     <Moment format="DD.MM.YYYY HH:mm">{this.props.video.date}</Moment>
-                {/* { (this.props.video.date).split("T")[0] } { (this.props.video.date).split("T")[1].split("+")[0] } */}
                 <Badge variant={ this.checkGame() ? "warning" : "success" }>{ this.checkGame(this.props.video.date) ? "Live" : "" }</Badge>
                 </span>
                 <div className="league-name">League: {this.props.video.competition.name}</div>
@@ -50,7 +49,7 @@ export default class MatchContainer extends Component {
                         <Col md={6} lg={6} xs={12}>
                         <ListGroup variant="flush">
                             {this.props.video.videos.map((v, index) => (
-                            <ListGroup.Item key={index} data-matchname={this.props.video.title} data-video={v.embed} data-videotitle={v.title} onClick={this.props.handleClickEvent} className='highlights'>{v.title}</ListGroup.Item>
+                            <ListGroup.Item key={index} data-matchname={this.props.video.title} data-matchdate={this.props.video.date.split('T')[0]} data-video={v.embed} data-videotitle={v.title} onClick={this.props.handleClickEvent} className='highlights'>{v.title}</ListGroup.Item>
                             ))}
                         </ListGroup>
                         

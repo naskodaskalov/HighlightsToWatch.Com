@@ -3,11 +3,14 @@ import { Row, Accordion, Pagination, Spinner } from 'react-bootstrap'
 import CountrySelector from './CountrySelector'
 import MatchContainer from './MatchContainer'
 import VideoModal from './VideoModal'
+import PopularVideos from './PopularVideos'
 import Search from './Common/Search'
 import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
 import Livescores from './Livescores'
+
+import GlobalHelpers from './Common/Helpers'
 
 export default class Videos extends Component {
   constructor (props) {
@@ -78,7 +81,7 @@ export default class Videos extends Component {
         for (let k = Object.values(gamesFromDb).length - 1; k >= 0; k--) {
           const currentDate = Object.values(gamesFromDb)[k];
 
-          if (Object.keys(gamesFromDb)[k] == moment(new Date()).format("MM-DD-YYYY")){
+          if (Object.keys(gamesFromDb)[k] === moment(new Date()).format("MM-DD-YYYY")){
             continue;
           }
 
@@ -87,7 +90,7 @@ export default class Videos extends Component {
             games.push(p)
           } 
         }
-        
+
         let sortedGames = this.sortGamesByDateAndTime(games)
         let videosTitles = []
 
@@ -142,6 +145,7 @@ export default class Videos extends Component {
 
   showVideo(e) {
     e.preventDefault()
+
     this.setState({
       selectedVideo: {
         chosenMatch: e.target.dataset['matchname'],
@@ -149,6 +153,14 @@ export default class Videos extends Component {
         videoTitle: e.target.dataset['videotitle']
       }
     })
+
+    const game = {
+      match: e.target.dataset['matchname'],
+      date: e.target.dataset['matchdate'],
+      count: 1
+    }
+
+    GlobalHelpers.UpdatePopularCounter(game);
     this.show()
   }
 
@@ -256,7 +268,10 @@ export default class Videos extends Component {
         />
         </div>
         <div className='column-container'>
+        <div className='left-side-container'>
+        <PopularVideos />
         <Livescores />
+        </div>
         <div className='videos-container'>
         <Row className=''>
             <Accordion className="w-100 text-left">
