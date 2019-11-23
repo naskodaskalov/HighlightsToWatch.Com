@@ -14,7 +14,7 @@ export default class GlobalHelpers {
                 const currentMatch = Object.values(games)[k];
                 if (game.match === currentMatch.match) {
                     key = Object.keys(games)[k]
-                    if (currentMatch.count === null) {
+                    if (currentMatch.count == null) {
                         game.count = 1
                     } else {
                         game.count = currentMatch.count + 1

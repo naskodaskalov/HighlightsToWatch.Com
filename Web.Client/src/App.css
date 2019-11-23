@@ -429,6 +429,10 @@ h5 {
    flex-direction: column;
  }
 
+ .left-side-container {
+   width: 100%;
+ }
+ 
  .videos-container {
    width: 100%;
   }
