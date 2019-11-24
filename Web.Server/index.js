@@ -29,18 +29,21 @@ const config = {
 
 
 firebase.initializeApp(config);
-app.get('/', function (req, res) {
-    
-let games = []
-let gamesDB = []
-let gamesFromDb
-let gamesFromServer
-let addedGames = 0
-let added = ''
-let updated = ''
-    Promise.all([getTodaysGameFromServer(), getTodaysGamesFromDB()]).then(response => {
+app.get('/:date?', function (req, res) {
+    var reqDate = req.params.date != undefined ? new Date(req.params.date) : undefined
+    console.log(reqDate)
+    let games = []
+    let gamesDB = []
+    let gamesFromDb
+    let gamesFromServer
+    let addedGames = 0
+    let added = ''
+    let updated = ''
+
+    Promise.all([getTodaysGameFromServer(reqDate), getTodaysGamesFromDB(reqDate)]).then(response => {
         gamesFromServer = response[0]
         gamesFromDb = response[1]
+        
         for (let i = 0; i < gamesFromServer.length; i++) {
             const element = gamesFromServer[i];
             games.push(element) 
@@ -51,11 +54,11 @@ let updated = ''
                 gamesDB.push(currentDate)
             }
         }
-    }).then(() => {
+    }).then((reqDate) => {
         let a = games
         let b = gamesDB
     
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+        let date = reqDate != undefined ? moment(reqDate, "MM-DD-YYYY") : moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
         if (a.length > b.length) {
             let missingGames = [].concat(
                 a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title)),
@@ -89,7 +92,7 @@ let updated = ''
             b.filter(obj2 => a.every(obj1 => obj2.videos.length !== obj1.videos.length))
         );
         
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+        let date = reqDate != undefined ? moment(reqDate, "MM-DD-YYYY") : moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
         addedGames = missingGames.length
         for (let i = 0; i < missingGames.length; i++) {
             const element = missingGames[i];
@@ -123,11 +126,11 @@ let updated = ''
 app.listen(port);
 console.log(`Server is running on port ${port}`);
 
-function getTodaysGameFromServer() {
+function getTodaysGameFromServer(reqDate) {
     return new Promise(resolve => {
         resolve(fetch('https://www.scorebat.com/video-api/v1/').then(data => data.json())
         .then((data) => {
-            let date = moment(new Date()).subtract(1, 'days').format("YYYY-MM-DD")
+            let date = reqDate != undefined ? moment(reqDate, "YYYY-MM-DD") : moment(new Date()).subtract(1, 'days').format("YYYY-MM-DD")
             let todaysGames = data
                                 .filter(m => m.date.split("T")[0] === date)
             return todaysGames
@@ -135,9 +138,9 @@ function getTodaysGameFromServer() {
     })
 }
 
-function getTodaysGamesFromDB() {
+function getTodaysGamesFromDB(reqDate) {
     return new Promise((resolve) => {
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+        let date = reqDate != undefined ? moment(reqDate, "MM-DD-YYYY") : moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
         resolve(fetch(`https://highlightstowatch.firebaseio.com/matches/${date}.json`)
             .then(data => data.json())
             .then((data) => {

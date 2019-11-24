@@ -10,6 +10,7 @@ import * as moment from 'moment'
 import axios from 'axios'
 import Helmet from 'react-helmet'
 import Fixtures from './Fixtures'
+import GlobalHelpers from './Common/Helpers'
 
 export default class League extends Component {
     constructor (props) {
@@ -30,7 +31,10 @@ export default class League extends Component {
             games: []
         }
 
+        this.handleClose = this.handleClose.bind(this)
         this.goBack = this.goBack.bind(this)
+        this.showVideo = this.showVideo.bind(this)
+        this.show = this.show.bind(this)
     }
 
     UNSAFE_componentWillReceiveProps (newProps) {
@@ -118,6 +122,35 @@ export default class League extends Component {
       this.props.history.push(`/league/${selectedCountry.toLowerCase()}`)
     }
 
+    showVideo(e) {
+        e.preventDefault()
+    
+        this.setState({
+          selectedVideo: {
+            chosenMatch: e.target.dataset['matchname'],
+            videoToWatch: e.target.dataset['video'],
+            videoTitle: e.target.dataset['videotitle']
+          }
+        })
+    
+        this.show()
+        const game = {
+          match: e.target.dataset['matchname'],
+          date: e.target.dataset['matchdate'],
+          count: 1
+        }
+    
+        GlobalHelpers.UpdatePopularCounter(game);
+      }
+
+      handleClose () {
+        this.setState({ show: false, hide: true })
+      }
+
+      show () {
+        this.setState({ show: true, hide: false })
+      }
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -160,6 +193,7 @@ export default class League extends Component {
             <main>
                 <Helmet>
                 <title>Highlights To Watch: {this.state.league.toUpperCase()}</title>
+                <meta property="og:title" content={`Highlights To Watch: ${this.state.league.toUpperCase()}`} />
                 </Helmet>
                 <BackButton {...this.props} />
                 <div className='controls'>

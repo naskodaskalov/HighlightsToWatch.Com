@@ -180,6 +180,7 @@ export default class Match extends Component {
         <Helmet>
           <title>{this.state.gameDetails.competition.name}: {this.state.match} ({this.state.date})</title>
           <meta property="og:image" content={this.state.gameDetails.thumbnail} />
+          <meta property="og:title" content={`${this.state.gameDetails.competition.name}: ${this.state.match} (${this.state.date})`} />
         </Helmet>
         <BackButton {...this.props} />
         {game}
