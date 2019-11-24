@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap&subset=cyrillic');
 
-:focus {outline:0 !important;}
+:focus {
+  outline: 0 !important;
+}
 
 .match-tweets {
   display: flex;
@@ -32,12 +34,12 @@
 }
 
 .league-logo {
-max-width: 50px;
-width: 100%;
-margin: 0 20px;
-border-bottom: 3px solid #fff;
-padding: 5px;
-transition: all 0.2s;
+  max-width: 50px;
+  width: 100%;
+  margin: 0 20px;
+  border-bottom: 3px solid #fff;
+  padding: 5px;
+  transition: all 0.2s;
 }
 
 h4 {
@@ -62,7 +64,7 @@ h4 {
   transform: scale(1.1);
 }
 
-.activeLeague > .league-logo {
+.activeLeague>.league-logo {
   border-bottom: 3px solid #061454;
   background-color: #e9ecef;
   border-radius: 5px;
@@ -77,33 +79,34 @@ h4 {
   padding-bottom: 5px;
 }
 
-.controls { 
+.controls {
   width: 60%;
   margin: auto;
 }
 
-.controls > div {
+.controls>div {
   display: inline-block;
 }
 
-.controls > div.dropdown {
+.controls>div.dropdown {
   width: 30%;
 }
 
-.controls > div.rbt {
+.controls>div.rbt {
   width: 70%;
 }
 
 .rbt-input-hint-container input {
   background-color: #fff;
-    border: 1px solid #061454;
-    border-radius: 8px;
-    padding: 10px 20px;
-    color: #061454;
-    
+  border: 1px solid #061454;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #061454;
+
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   background-color: #061454;
 }
 
@@ -116,20 +119,20 @@ h4 {
   margin: auto;
 }
 
-#basic-navbar-nav > div {
+#basic-navbar-nav>div {
   text-align: center;
 }
 
-#basic-navbar-nav > div > .league-logo {
+#basic-navbar-nav>div>.league-logo {
   margin: 10px 25px;
 }
 
-#basic-navbar-nav > div > .info-text {
+#basic-navbar-nav>div>.info-text {
   margin-top: 20px;
   display: block;
 }
 
-.footer > div {
+.footer>div {
   width: 35%;
 }
 
@@ -137,12 +140,12 @@ h4 {
   text-align: right;
 }
 
-.footer > div> a {
+.footer>div>a {
   text-decoration: none;
   color: #fff;
 }
 
-.footer > div > a:hover {
+.footer>div>a:hover {
   text-decoration: underline;
 }
 
@@ -157,6 +160,8 @@ h4 {
 
 .bordered-card {
   border-radius: 3px !important;
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc !important;
 }
 
 .hltw-btn {
@@ -178,6 +183,7 @@ nav {
   color: #061454 !important;
   padding-top: 10px;
 }
+
 .btn-link {
   color: #061454;
   font-weight: 500;
@@ -223,7 +229,7 @@ nav {
   width: 30%;
 }
 
-.left-side-container > .livescores-container {
+.left-side-container>.livescores-container {
   width: 100%;
   margin-bottom: 20px;
 }
@@ -254,16 +260,92 @@ nav {
   margin-bottom: 0;
 }
 
-.livescores-container .accordion {
-  border-bottom: 1px solid grey;
+.stat-col {
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+}
+
+.lineup-home {
+  width: 50%;
+  display: inline-block;
+  text-align: left;
+}
+
+.lineup-away {
+  width: 50%;
+  display: inline-block;
+  text-align: right;
+}
+
+.player-number {
+  border-radius: 50%;
+  background-color: #061454;
+  color: #fff;
+  padding: 2px 0;
+  width: 30px;
+  display: inline-block;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.game-result {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.score-box {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: #061454;
+  color: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  font-size: 45px;
+  padding-top: 12px;
+}
+
+.delimiter {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  color: #061454;
+  border-radius: 50%;
+  vertical-align: middle;
+  font-size: 45px;
+  padding-top: 12px;
+}
+
+.yellow-card {
+  width: 13px;
+  height: 20px;
+  background: #f7f758;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.red-card {
+  width: 13px;
+  height: 20px;
+  background: #cf0016;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .card-header:hover {
   cursor: pointer;
   border-left: 5px solid #061454;
-  -webkit-box-shadow: inset 0px 0px 30px -20px rgba(0,0,0,0.35);
-  -moz-box-shadow: inset 0px 0px 30px -20px rgba(0,0,0,0.35);
-  box-shadow: inset 0px 0px 30px -20px rgba(0,0,0,0.35);
+  -webkit-box-shadow: inset 0px 0px 30px -20px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: inset 0px 0px 30px -20px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0px 0px 30px -20px rgba(0, 0, 0, 0.35);
 }
 
 main {
@@ -291,7 +373,7 @@ main {
   border-bottom: 3px solid #061454;
 }
 
-.active-page > .page-link {
+.active-page>.page-link {
   border-bottom: 3px solid #061454;
   border-radius: 0 !important;
 }
@@ -301,7 +383,8 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
-.table td, .table th {
+.table td,
+.table th {
   padding: 2px;
   font-size: 14px;
   border-top: 3px solid #061454;
@@ -367,6 +450,7 @@ h5 {
   -webkit-animation: spinner-border 1.25s linear infinite;
   animation: spinner-border 1.25s linear infinite;
 }
+
 .contact-form {
   margin: auto;
   width: 50%;
@@ -386,7 +470,7 @@ h5 {
   color: #061454 !important;
 }
 
-.dropdown > button {
+.dropdown>button {
   background-color: #fff;
   border: 1px solid #061454;
   border-radius: 10px;
@@ -394,8 +478,8 @@ h5 {
   color: #061454;
 }
 
-.dropdown > button:hover,
-.dropdown > button:focus {
+.dropdown>button:hover,
+.dropdown>button:focus {
   background-color: #061454 !important;
   color: #fff;
 }
@@ -414,82 +498,7 @@ h5 {
   text-decoration: underline;
 }
 
-@media only screen and (max-width: 400px) {
-  .game-details-card > .row {
-      flex-direction: column !important;
-  }
-}
-
 .row {
   margin-left: 0;
   margin-right: 0;
 }
-@media only screen and (max-width: 950px) {
- .column-container {
-   flex-direction: column;
- }
-
- .left-side-container {
-   width: 100%;
- }
- 
- .videos-container {
-   width: 100%;
-  }
-
-  .livescores-container {
-    width: 100%;
-    margin-top: 10px;
-  }
-.xs-hidden {
-  display: none;
-}
-.controls {
-  width: 90%;
-}
-.controls > div {
-  display: block;
-}
-
-.controls > div.dropdown {
-  width: 100%;
-  margin: auto;
-}
-
-.controls > div.rbt {
-  width: 100%;
-}
-
-#dropdown-basic-button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.videos-container {
-  margin-top: 10px;
-}
-
-.match-tweets {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.match-tweets div {
-  width: 95%;
-  margin: auto;
-  display: inline-block;
-  vertical-align: top;
-  max-height: 300px;
-  overflow: auto;
-}
-
-}
-
-@media only screen and (min-width: 950px) {
- 
-  .xs-shown {
-    display: none;
-  }
-  
-  }

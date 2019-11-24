@@ -8,6 +8,8 @@ import axios from 'axios'
 import Helmet from 'react-helmet'
 import '../App.css'
 
+import MatchStatistic from './MatchStatistic'
+
 import GlobalHelpers from './Common/Helpers'
 
 export default class Match extends Component {
@@ -108,6 +110,8 @@ export default class Match extends Component {
         </main>
       )
     }
+    let homeTeam = this.state.match.split('-')[0].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')
+    let awayTeam = this.state.match.split('-')[1].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')
     let gameDetails = this.state.gameDetails
     let game = (
       <Card className='game-details-card'>
@@ -122,7 +126,8 @@ export default class Match extends Component {
                 <Col md={6} lg={6} xs={12}>
                 <Card.Img src={gameDetails.thumbnail} className='mt-3' alt={gameDetails.title} />
                 </Col>
-                <Col className='pt-3' md={6} lg={6} xs={12}>
+                <Col className='pt-3 pl-0 pr-0' md={6} lg={6} xs={12}>
+                    <Col md={12} lg={12} xs={12}>
                     {gameDetails.videos.map((v, index) => (
                       <Accordion key={index} onClick={this.showEvent.bind(this)}>
                       <Card className='bordered-card'>
@@ -139,6 +144,13 @@ export default class Match extends Component {
                       </Card>
                     </Accordion>
                     ))}
+                    </Col>
+                    <Col md={12} lg={12} xs={12}>
+                      <MatchStatistic
+                        homeTeam={homeTeam}
+                        awayTeam={awayTeam}
+                      />
+                    </Col>
                 </Col>
             </Row>
         </Card.Body>

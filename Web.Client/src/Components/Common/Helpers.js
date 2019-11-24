@@ -22,10 +22,12 @@ export default class GlobalHelpers {
                 }
             }
             
-            if (key) {
-                db.database().ref(`/populargames/${key}`).update(game)
-            } else {
-                db.database().ref('/populargames/').push(game)
+            if (process.env.NODE_ENV != "development") {
+                if (key) {
+                    db.database().ref(`/populargames/${key}`).update(game)
+                } else {
+                    db.database().ref('/populargames/').push(game)
+                }
             }
         })
         

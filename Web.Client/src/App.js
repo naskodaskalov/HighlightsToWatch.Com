@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import './MediaQueries.css'
 
 import Routes from './Config/Routes'
 import Navigation from './Components/Common/Navigation'

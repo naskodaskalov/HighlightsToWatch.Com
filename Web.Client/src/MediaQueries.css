@@ -1,0 +1,101 @@
+
+
+@media only screen and (max-width: 400px) {
+    .game-details-card>.row {
+      flex-direction: column !important;
+    }
+  }
+
+@media only screen and (max-width: 950px) {
+    .column-container {
+        flex-direction: column;
+    }
+
+    .lineup .card-body {
+        padding: 5px;
+    }
+
+    .lineup .list-group-item {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .score-box {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-color: #061454;
+        color: #fff;
+        border-radius: 50%;
+        vertical-align: middle;
+        font-size: 32px;
+        padding-top: 4px;
+    }
+
+    .left-side-container {
+        width: 100%;
+    }
+
+    .videos-container {
+        width: 100%;
+    }
+
+    .livescores-container {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .xs-hidden {
+        display: none;
+    }
+
+    .controls {
+        width: 90%;
+    }
+
+    .controls>div {
+        display: block;
+    }
+
+    .controls>div.dropdown {
+        width: 100%;
+        margin: auto;
+    }
+
+    .controls>div.rbt {
+        width: 100%;
+    }
+
+    #dropdown-basic-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .videos-container {
+        margin-top: 10px;
+    }
+
+    .match-tweets {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .match-tweets div {
+        width: 95%;
+        margin: auto;
+        display: inline-block;
+        vertical-align: top;
+        max-height: 300px;
+        overflow: auto;
+    }
+
+}
+
+@media only screen and (min-width: 950px) {
+
+    .xs-shown {
+        display: none;
+    }
+
+}
