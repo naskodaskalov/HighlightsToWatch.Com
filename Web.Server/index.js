@@ -27,23 +27,24 @@ const config = {
     measurementId: "G-WFTXE4VHC6"
 }
 
-
 firebase.initializeApp(config);
 app.get('/', function (req, res) {
-    
-let games = []
-let gamesDB = []
-let gamesFromDb
-let gamesFromServer
-let addedGames = 0
-let added = ''
-let updated = ''
+
+    let games = []
+    let gamesDB = []
+    let gamesFromDb
+    let gamesFromServer
+    let addedGames = 0
+    let added = ''
+    let updated = ''
+    let gamesAdded = []
+    let gamesUpdated = []
     Promise.all([getTodaysGameFromServer(), getTodaysGamesFromDB()]).then(response => {
         gamesFromServer = response[0]
         gamesFromDb = response[1]
         for (let i = 0; i < gamesFromServer.length; i++) {
             const element = gamesFromServer[i];
-            games.push(element) 
+            games.push(element)
         }
         if (gamesFromDb != null) {
             for (let k = 0; k < Object.values(gamesFromDb).length; k++) {
@@ -54,42 +55,46 @@ let updated = ''
     }).then(() => {
         let a = games
         let b = gamesDB
-    
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+
+        let date = moment(new Date())
+            .subtract(1, 'days')
+            .format("MM-DD-YYYY")
         if (a.length > b.length) {
-            let missingGames = [].concat(
-                a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title)),
-                b.filter(obj2 => a.every(obj1 => obj2.title !== obj1.title))
-            );
+            let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title)), b.filter(obj2 => a.every(obj1 => obj2.title !== obj1.title)));
             addedGames = missingGames.length
             for (let i = 0; i < missingGames.length; i++) {
                 const element = missingGames[i];
-                firebase.database().ref('/matches/' + date).push(element)
+                gamesAdded.push(element.title)
+                firebase
+                    .database()
+                    .ref('/matches/' + date)
+                    .push(element)
             }
         } else {
-            let missingGames = [].concat(
-                a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title))
-            );
+            let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => obj1.title !== obj2.title)));
             addedGames = missingGames.length
             for (let i = 0; i < missingGames.length; i++) {
                 const element = missingGames[i];
-                firebase.database().ref('/matches/' + date).push(element)
+                gamesAdded.push(element.title)
+                firebase
+                    .database()
+                    .ref('/matches/' + date)
+                    .push(element)
             }
         }
         added = `Games added: ${addedGames}`
     }).then(() => {
         let a = games
         let b = gamesDB
-    
+
         if (gamesDB.length == 0) {
             return
         }
-        let missingGames = [].concat(
-            a.filter(obj1 => b.every(obj2 => obj1.videos.length !== obj2.videos.length)),
-            b.filter(obj2 => a.every(obj1 => obj2.videos.length !== obj1.videos.length))
-        );
-        
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
+        let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => obj1.videos.length !== obj2.videos.length)), b.filter(obj2 => a.every(obj1 => obj2.videos.length !== obj1.videos.length)));
+
+        let date = moment(new Date())
+            .subtract(1, 'days')
+            .format("MM-DD-YYYY")
         addedGames = missingGames.length
         for (let i = 0; i < missingGames.length; i++) {
             const element = missingGames[i];
@@ -100,36 +105,41 @@ let updated = ''
                     key = Object.keys(gamesFromDb)[k]
                 }
             }
-    
-            firebase.database().ref(`/matches/${date}/${key}`).update(element)
+            gamesUpdated.push(element.title)
+            firebase
+                .database()
+                .ref(`/matches/${date}/${key}`)
+                .update(element)
         }
         updated = `Games updated: ${addedGames}`
     }).then(() => {
-        return res.status(200).json({
-            success: true,
-            gamesOnServer: games.length,
-            gamesInDB: gamesDB.length,
-            update: updated,
-            added: added
-        })
+        return res
+            .status(200)
+            .json({
+                success: true,
+                gamesOnServer: games.length,
+                gamesInDB: gamesDB.length,
+                update: updated, added: added,
+                gamesAdded: gamesAdded,
+                gamesUpdated: gamesUpdated
+            })
     }).catch((err) => {
-        return res.status(200).json({
-            success: false,
-            message: err.message
-        })
+        return res
+            .status(200)
+            .json({success: false, message: err.message})
     })
-  })
+})
 
 app.listen(port);
 console.log(`Server is running on port ${port}`);
 
 function getTodaysGameFromServer() {
     return new Promise(resolve => {
-        resolve(fetch('https://www.scorebat.com/video-api/v1/').then(data => data.json())
-        .then((data) => {
-            let date = moment(new Date()).subtract(1, 'days').format("YYYY-MM-DD")
-            let todaysGames = data
-                                .filter(m => m.date.split("T")[0] === date)
+        resolve(fetch('https://www.scorebat.com/video-api/v1/').then(data => data.json()).then((data) => {
+            let date = moment(new Date())
+                .subtract(1, 'days')
+                .format("YYYY-MM-DD")
+            let todaysGames = data.filter(m => m.date.split("T")[0] === date)
             return todaysGames
         }))
     })
@@ -137,11 +147,11 @@ function getTodaysGameFromServer() {
 
 function getTodaysGamesFromDB() {
     return new Promise((resolve) => {
-        let date = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY")
-        resolve(fetch(`https://highlightstowatch.firebaseio.com/matches/${date}.json`)
-            .then(data => data.json())
-            .then((data) => {
-                return data
-            }))
+        let date = moment(new Date())
+            .subtract(1, 'days')
+            .format("MM-DD-YYYY")
+        resolve(fetch(`https://highlightstowatch.firebaseio.com/matches/${date}.json`).then(data => data.json()).then((data) => {
+            return data
+        }))
     })
 }
