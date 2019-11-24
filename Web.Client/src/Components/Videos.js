@@ -154,6 +154,7 @@ export default class Videos extends Component {
       }
     })
 
+    this.show()
     const game = {
       match: e.target.dataset['matchname'],
       date: e.target.dataset['matchdate'],
@@ -161,7 +162,6 @@ export default class Videos extends Component {
     }
 
     GlobalHelpers.UpdatePopularCounter(game);
-    this.show()
   }
 
   show () {
