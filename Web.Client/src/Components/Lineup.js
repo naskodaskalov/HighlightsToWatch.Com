@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, Accordion, Button, Spinner, ListGroup } from 'react-bootstrap'
+import { Card, Accordion, Button, ListGroup } from 'react-bootstrap'
 import '../App.css'
 
 export default class Lineup extends Component {

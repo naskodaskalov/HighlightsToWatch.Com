@@ -22,7 +22,7 @@ export default class GlobalHelpers {
                 }
             }
             
-            if (process.env.NODE_ENV != "development") {
+            if (process.env.NODE_ENV !== "development") {
                 if (key) {
                     db.database().ref(`/populargames/${key}`).update(game)
                 } else {

@@ -17,6 +17,7 @@
     "react-helmet": "^5.2.1",
     "react-moment": "^0.9.6",
     "react-router-dom": "5.0.1",
+    "react-share": "3.0.1",
     "toastr": "2.1.4"
   },
   "devDependencies": {

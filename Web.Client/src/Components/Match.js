@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import BackButton from './Common/BackButton'
 import { Row, Col, Card, Accordion, Button, Spinner } from 'react-bootstrap'
+import { TwitterShareButton, FacebookShareButton, TwitterIcon, FacebookIcon } from 'react-share'
 import 'moment-timezone'
 import Moment from 'react-moment'
 import * as moment from 'moment'
@@ -113,14 +114,32 @@ export default class Match extends Component {
     let homeTeam = this.state.match.split('-')[0].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')
     let awayTeam = this.state.match.split('-')[1].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')
     let gameDetails = this.state.gameDetails
+    let fullUrl = window.location.href
     let game = (
       <Card className='game-details-card'>
         <Card.Body>
-          <h2>{gameDetails.side1.name} vs {gameDetails.side2.name}</h2>
+          <h2>{gameDetails.side1.name} vs {gameDetails.side2.name}</h2> 
+          <TwitterShareButton
+              url={fullUrl}
+              title={`${gameDetails.side1.name} vs ${gameDetails.side2.name}`}
+              className="social-share-icon">
+              <TwitterIcon
+                size={32}
+                borderRadius={10} />
+          </TwitterShareButton>
+
+          <FacebookShareButton
+              url={fullUrl}
+              title={`${gameDetails.side1.name} vs ${gameDetails.side2.name}`}
+              className="social-share-icon">
+              <FacebookIcon
+                size={32}
+                borderRadius={10} />
+          </FacebookShareButton>
           <span className="match-date">
             <Moment format="DD.MM.YYYY HH:MM">{gameDetails.date}</Moment>
         </span>
-        
+
         <div className="league-name">League: {gameDetails.competition.name}</div>
             <Row>
                 <Col md={6} lg={6} xs={12}>
