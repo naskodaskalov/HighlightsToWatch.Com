@@ -42,6 +42,7 @@ app.get('/', function (req, res) {
     Promise.all([getTodaysGameFromServer(), getTodaysGamesFromDB()]).then(response => {
         gamesFromServer = response[0]
         gamesFromDb = response[1]
+        
         for (let i = 0; i < gamesFromServer.length; i++) {
             const element = gamesFromServer[i];
             games.push(element)
@@ -52,7 +53,7 @@ app.get('/', function (req, res) {
                 gamesDB.push(currentDate)
             }
         }
-    }).then(() => {
+    }).then((reqDate) => {
         let a = games
         let b = gamesDB
 
@@ -133,7 +134,7 @@ app.get('/', function (req, res) {
 app.listen(port);
 console.log(`Server is running on port ${port}`);
 
-function getTodaysGameFromServer() {
+function getTodaysGameFromServer(reqDate) {
     return new Promise(resolve => {
         resolve(fetch('https://www.scorebat.com/video-api/v1/').then(data => data.json()).then((data) => {
             let date = moment(new Date())
@@ -145,7 +146,7 @@ function getTodaysGameFromServer() {
     })
 }
 
-function getTodaysGamesFromDB() {
+function getTodaysGamesFromDB(reqDate) {
     return new Promise((resolve) => {
         let date = moment(new Date())
             .subtract(1, 'days')
