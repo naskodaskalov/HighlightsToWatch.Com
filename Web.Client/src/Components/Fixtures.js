@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table , Card, Accordion, Button, Spinner } from 'react-bootstrap'
+import { Card, Accordion, Button, Spinner, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 import moment from 'C:/Users/Nasko Daskalov/AppData/Local/Microsoft/TypeScript/3.6/node_modules/moment/moment'
 
@@ -21,7 +21,6 @@ export default class Fixtures extends Component {
             this.getLeagueData()
           ]).then(response => {
               this.setState({ leaguesByCountry: response[0], isResultLoaded: true })
-                
             })
     }
     
@@ -41,6 +40,7 @@ export default class Fixtures extends Component {
     }
 
     getFixtures(leagueid) {
+        this.setState({ fixturesByLeague: [] })
         return new Promise((resolve) => {
             const proxyurl = "https://cors-anywhere.herokuapp.com/";
             resolve(axios(`${proxyurl}https://livescore-api.com/api-client/fixtures/matches.json?key=3dbxhYW6Xoftlh5V&secret=kg6urHhfYtFTY301hbzyavE7UUBfbHbv&league=${leagueid}`).then(response => {
@@ -61,52 +61,45 @@ export default class Fixtures extends Component {
             let matchDate = moment(match.date).format("DD.MM.YY")
             let matchTime = match.time.split(":")[0] + ":" + match.time.split(":")[1]
                return (
-                <tr key={index}>
-                    <td className='competition-name pl-3'>{matchDate} <br /> {matchTime}</td>
-                    <td>{match.home_name}</td>
-                    <td>{match.away_name}</td>
-                    <td>
-                    {match.location}
-                    </td>
-                </tr>) 
+                <ListGroup.Item  key={index}>
+                    <div className='list-col'>{matchDate} <br /> {matchTime}</div>
+                    <div className='list-col'>{match.home_name}</div>
+                    <div className='list-col'>{match.away_name}</div>
+                    <div className='list-col'>{match.location}</div>
+                </ListGroup.Item>
+                ) 
         })
         let leagues = this.state.leaguesByCountry.map((league, index) => (
                             <Accordion key={index}>
-                            <Card className='bordered-card' onClick={this.showEvent.bind(this)} >
-                                <Card.Header  data-leagueid={league.league_id}>
+                            <Card className='bordered-card'>
+                                <Card.Header  data-leagueid={league.league_id}  onClick={this.showEvent.bind(this)} >
                                 <Accordion.Toggle as={Button} variant="link" eventKey={index}  data-leagueid={league.league_id}>
                                     {league.league_name}
                                 </Accordion.Toggle>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey={index}>
                                 <Card.Body>
-                                <Table striped hover size="sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Home team</th>
-                                            <th>Away team</th>
-                                            <th>Stadium</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        { !this.state.fixturesLoaded ? (
-                                            <td colSpan="4">
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>
+                                        <div className='list-col'>Date</div>
+                                        <div className='list-col'>Home team</div>
+                                        <div className='list-col'>Away team</div>
+                                        <div className='list-col'>Stadium</div>
+                                    </ListGroup.Item>
+                                    { !this.state.fixturesLoaded ? (
+                                            <ListGroup.Item>
                                                 <Spinner animation="border" role="status" className="fixture-spinner">
                                                     <span className="sr-only">Loading...</span>
                                                 </Spinner>
-                                            </td>
+                                            </ListGroup.Item>
                                         ) : (
                                             this.state.fixturesByLeague.length > 0 ? (
                                                 gamesByLeague
                                             ) : (
-                                                <td colSpan="4" className="text-center">
-                                                    No data
-                                                </td>
+                                                <ListGroup.Item>No data</ListGroup.Item>
                                             )
                                         )}
-                                    </tbody>
-                                </Table>
+                                </ListGroup>
                                 </Card.Body>
                                 </Accordion.Collapse>
                             </Card>
@@ -125,13 +118,9 @@ export default class Fixtures extends Component {
                 return (
                     <div className='livescores-container'>
                         <h4>Upcoming games in {this.props.leaguename}</h4>
-                        <Table striped bordered hover size="sm">
-                            <tbody>
-                                <tr>
-                                    <td colSpan="5">No data!</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>No data</ListGroup.Item>
+                        </ListGroup>
                     </div>
                 )
             }

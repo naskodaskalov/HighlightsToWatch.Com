@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table , Card, Accordion, Button, Spinner } from 'react-bootstrap'
+import { Card, Accordion, Button, Spinner, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 
 export default class Livescores extends Component {
@@ -50,19 +50,19 @@ export default class Livescores extends Component {
     render() {
         let games
             games = this.state.livegames.map((match, index) => (
-                <tr key={index}>
-                    <td className='competition-name pl-3'>{match.competition_name}</td>
-                    <td>{match.home_name}</td>
-                    <td className='score-column'>{match.score} <br /> {match.status === "IN PLAY" && match.ht_score !== "" ? "(" + match.ht_score + ")" : ""}</td>
-                    <td>{match.away_name}</td>
-                    <td>
+                <ListGroup.Item  key={index}>
+                    <div className='list-col'>{match.competition_name}</div>
+                    <div className='list-col'>{match.home_name}</div>
+                    <div className='list-col'>{match.score} <br /> {match.status === "IN PLAY" && match.ht_score !== "" ? "(" + match.ht_score + ")" : ""}</div>
+                    <div className='list-col'>{match.away_name}</div>
+                    <div className='list-col'>
                     {match.status === "FINISHED" ?
                         match.status
                         : match.status === "IN PLAY" ? 
                             match.time + '"'
                             : match.scheduled}
-                    </td>
-                </tr>
+                    </div>
+                </ListGroup.Item>
             ))
         
             if (!this.state.isLivescoreLoaded) {
@@ -85,20 +85,16 @@ export default class Livescores extends Component {
                         </Card.Header>
                         <Accordion.Collapse eventKey='livescore'>
                           <Card.Body>
-                          <Table striped hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>League</th>
-                                    <th>Home team</th>
-                                    <th>FT (HT)</th>
-                                    <th>Away team</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {games}
-                            </tbody>
-                        </Table>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <div className='list-col'>League</div>
+                                <div className='list-col'>Home team</div>
+                                <div className='list-col'>FT (HT)</div>
+                                <div className='list-col'>Away team</div>
+                                <div className='list-col'>Status</div>
+                            </ListGroup.Item>
+                            {games}
+                        </ListGroup>
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -109,13 +105,11 @@ export default class Livescores extends Component {
                 return (
                     <div className='livescores-container'>
                         <h4>Livescores</h4>
-                        <Table striped bordered hover size="sm">
-                            <tbody>
-                                <tr>
-                                    <td colSpan="5">No live events!</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                        <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            No live events.
+                        </ListGroup.Item>
+                        </ListGroup>
                     </div>
                 )
             }

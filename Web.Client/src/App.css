@@ -518,3 +518,19 @@ h5 {
   cursor: pointer;
   transform: scale(1.1);
 }
+
+.livescores-container .list-col {
+  max-width: 20%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.livescores-container .list-group-item {
+  padding: 5px;
+}
+
+.livescores-container .list-group-item:hover {
+  background-color: #eee;
+}
