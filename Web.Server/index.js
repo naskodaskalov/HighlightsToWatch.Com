@@ -27,7 +27,7 @@ const config = {
     measurementId: "G-WFTXE4VHC6"
 }
 
-firebase.initializeApp(testDBconfig);
+firebase.initializeApp(config);
 app.get('/', function (req, res) {
 
     let games = []
@@ -152,7 +152,7 @@ function getTodaysGamesFromDB(reqDate) {
         let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
-        resolve(fetch(`https://mycarservicebook.firebaseio.com/matches/${date}.json`).then(data => data.json()).then((data) => {
+        resolve(fetch(`https://highlightstowatch.firebaseio.com/matches/${date}.json`).then(data => data.json()).then((data) => {
             return data
         }))
     })
