@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { DropdownButton, Dropdown } from 'react-bootstrap'
-import axios from 'axios'
+import GlobalHelpers from './Common/Helpers'
+import db from '../Config/Database'
 
 export default class CountrySelector extends Component{
   constructor (props) {
@@ -14,24 +15,21 @@ export default class CountrySelector extends Component{
   }
 
   componentDidMount () {
-    return new Promise((resolve) => {
-      resolve(axios('https://highlightstowatch.firebaseio.com/leagues.json').then(response => {
-        let countries = []
-        for (let i = 0; i < Object.values(response.data).length; i++) {
-          const element = Object.values(response.data)[i];
-          countries.push(element)
+    var leagues = db.database().ref("leagues");
+    let countries = []
+    let selectedCountries = []
+
+    leagues.once("value").then(function (snapshot) {
+      countries = snapshot.val()
+    }).then(function () {
+        for (let i = 0; i < Object.values(countries).length; i++) {
+          const element = Object.values(countries)[i];
+          selectedCountries.push(element)
         }
-        countries.sort(function (a, b) {
-          if (a.country_name > b.country_name) {
-              return 1;
-          } else {
-              return -1;
-          }
-      })
-        this.setState({ countries })
-     }))
-     })
-    
+    }).then(() => {
+        let data = GlobalHelpers.SortArrayAsc(selectedCountries, "country_name")
+        this.setState({ countries: data })
+    })
   }
 
   showAllVideos() {

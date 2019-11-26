@@ -58,13 +58,8 @@ export default class League extends Component {
         gamesFromDb.map(game => gamesByLeague.push(game))
         })
         .then(() => {
-            gamesByLeague.sort(function (a, b) {
-                if (a.date > b.date) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            })
+            gamesByLeague = GlobalHelpers.SortArrayDesc(gamesByLeague, "date")
+            
             this.setState({
                 gamesByLeague,
                 isLoading: false

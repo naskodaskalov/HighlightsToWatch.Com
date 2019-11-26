@@ -2,7 +2,6 @@ import db from '../../Config/Database'
 
 export default class GlobalHelpers {
     static UpdatePopularCounter(game) {
-
         var ref = db.database().ref("populargames");
         let games = []
         
@@ -30,7 +29,25 @@ export default class GlobalHelpers {
                 }
             }
         })
-        
-        
+    }
+
+    static SortArrayDesc(array, property) {
+        return array.sort(function (a, b) {
+            if (a[property] > b[property]) {
+                return -1;
+            } else {
+                return 1;
+            }
+        })
+    }
+
+    static SortArrayAsc(array, property) {
+        return array.sort(function (a, b) {
+            if (a[property] > b[property]) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
     }
 }

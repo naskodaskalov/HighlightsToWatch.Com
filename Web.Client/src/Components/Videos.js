@@ -112,14 +112,8 @@ export default class Videos extends Component {
   }
 
   sortGamesByDateAndTime(games) {
-    let sortedGames = games.sort((a, b) => {
-      if (moment(a.date) < moment(b.date)) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-
+    let sortedGames = GlobalHelpers.SortArrayDesc(games, "date")
+    
     return sortedGames
   }
 

@@ -33,7 +33,7 @@ export default class Lineup extends Component {
         let players = []
 
         players.push(
-            <ListGroup.Item>
+            <ListGroup.Item key={`l_0`}>
                 <div className='lineup-home'>Tactic {this.props.gameInfo["f1"]}</div>
                 <div className='lineup-away'>Tactic {this.props.gameInfo["f2"]}</div>
             </ListGroup.Item>
@@ -67,7 +67,7 @@ export default class Lineup extends Component {
                     awayHasRedCard = true;
                 }
                 players.push(
-                    <ListGroup.Item  key={i}>
+                    <ListGroup.Item key={`l_${i+1}`}>
                         <div className='lineup-home'>
                             <span className='player-number'>{playerHome.nm}.</span>
                             {playerHome.n}

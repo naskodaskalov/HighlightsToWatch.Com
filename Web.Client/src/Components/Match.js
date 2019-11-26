@@ -115,6 +115,8 @@ export default class Match extends Component {
     let awayTeam = this.state.match.split('-')[1].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')
     let gameDetails = this.state.gameDetails
     let fullUrl = window.location.href
+    
+    let sortedVideos = gameDetails.videos.reverse()
     let game = (
       <Card className='game-details-card'>
         <Card.Body>
@@ -130,7 +132,7 @@ export default class Match extends Component {
 
           <FacebookShareButton
               url={fullUrl}
-              title={`${gameDetails.side1.name} vs ${gameDetails.side2.name}`}
+              quote={`${gameDetails.side1.name} vs ${gameDetails.side2.name}`}
               className="social-share-icon">
               <FacebookIcon
                 size={32}
@@ -147,7 +149,7 @@ export default class Match extends Component {
                 </Col>
                 <Col className='pt-3 pl-0 pr-0' md={6} lg={6} xs={12}>
                     <Col md={12} lg={12} xs={12}>
-                    {gameDetails.videos.map((v, index) => (
+                    {sortedVideos.map((v, index) => (
                       <Accordion key={index} onClick={this.showEvent.bind(this)}>
                       <Card className='bordered-card'>
                         <Card.Header>
@@ -162,7 +164,8 @@ export default class Match extends Component {
                         </Accordion.Collapse>
                       </Card>
                     </Accordion>
-                    ))}
+                    ))
+                  }
                     </Col>
                     <Col md={12} lg={12} xs={12}>
                       <MatchStatistic

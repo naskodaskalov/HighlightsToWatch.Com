@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Accordion, Button, Spinner, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
+import GlobalHelpers from './Common/Helpers'
 
 export default class Livescores extends Component {
     constructor (props) {
@@ -17,14 +18,8 @@ export default class Livescores extends Component {
             this.getLivescores()
           ]).then(response => {
                 let result = response[0].data.match.filter(m => m.status !== "FINISHED")
-                result.sort((function (a, b) {
-                    if (a.scheduled > b.scheduled) {
-                        return 1;
-                    } else {
-                        return -1;
-                    }
-                }))
-
+                result = GlobalHelpers.SortArrayAsc(result, "scheduled")
+               
                 this.setState({
                     livegames: result,
                     isLivescoreLoaded: true

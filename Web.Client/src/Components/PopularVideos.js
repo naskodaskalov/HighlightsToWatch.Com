@@ -4,6 +4,7 @@ import { Card, Button,  Accordion,  Spinner, ListGroup } from 'react-bootstrap'
 import 'moment-timezone'
 
 import db from '../Config/Database'
+import GlobalHelpers from './Common/Helpers'
 
 export default class PopularVideos extends Component {
     constructor (props) {
@@ -37,15 +38,8 @@ export default class PopularVideos extends Component {
             games = snapshot.val()
         }).then(function () {
             Object.values(games).map(game => popularGames.push(game))
-
-            popularGames.sort(function (a, b) {
-                if (a.count > b.count) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            })
-
+            popularGames = GlobalHelpers.SortArrayDesc(popularGames, "count")
+            
             masterThis.setState({
                 popularGames: popularGames.slice(0, 5),
                 isLoading: false
