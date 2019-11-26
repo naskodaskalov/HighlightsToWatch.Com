@@ -11,6 +11,16 @@
         flex-direction: column;
     }
 
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer > div {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
     .lineup .card-body {
         padding: 5px;
     }

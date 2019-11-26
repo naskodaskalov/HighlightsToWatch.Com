@@ -534,3 +534,24 @@ h5 {
 .livescores-container .list-group-item:hover {
   background-color: #eee;
 }
+
+.footer h4 {
+  color: #fff;
+  text-align: left;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.footer .list-group-item {
+  background-color: unset;
+  width: 80%;
+}
+
+.footer a {
+  color: #fff;
+}
+
+.footer .list-group-item:hover {
+  background-color: #13236a;
+  cursor: pointer;
+}
