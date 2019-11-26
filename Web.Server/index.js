@@ -3,7 +3,7 @@ const express = require("express");
 const firebase = require("firebase");
 const fetch = require("node-fetch");
 const port = process.env.PORT || 3303
-const moment = require("moment")
+const moment = require("moment-timezone")
 
 const app = require('express')()
 const testDBconfig = {
@@ -27,7 +27,7 @@ const config = {
     measurementId: "G-WFTXE4VHC6"
 }
 
-firebase.initializeApp(config);
+firebase.initializeApp(testDBconfig);
 app.get('/', function (req, res) {
 
     let games = []
@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
         let a = games
         let b = gamesDB
 
-        let date = moment(new Date())
+        let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
         if (a.length > b.length) {
@@ -93,7 +93,7 @@ app.get('/', function (req, res) {
         }
         let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => obj1.videos.length !== obj2.videos.length)), b.filter(obj2 => a.every(obj1 => obj2.videos.length !== obj1.videos.length)));
 
-        let date = moment(new Date())
+        let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
         addedGames = missingGames.length
@@ -122,7 +122,8 @@ app.get('/', function (req, res) {
                 gamesInDB: gamesDB.length,
                 update: updated, added: added,
                 gamesAdded: gamesAdded,
-                gamesUpdated: gamesUpdated
+                gamesUpdated: gamesUpdated,
+                timeNow: moment(new Date()).tz("Europe/Sofia").format("YYYY-MM-DDTHH:mm")
             })
     }).catch((err) => {
         return res
@@ -137,7 +138,7 @@ console.log(`Server is running on port ${port}`);
 function getTodaysGameFromServer(reqDate) {
     return new Promise(resolve => {
         resolve(fetch('https://www.scorebat.com/video-api/v1/').then(data => data.json()).then((data) => {
-            let date = moment(new Date())
+            let date = moment(new Date()).tz("Europe/Sofia")
                 .subtract(1, 'days')
                 .format("YYYY-MM-DD")
             let todaysGames = data.filter(m => m.date.split("T")[0] === date)
@@ -148,10 +149,10 @@ function getTodaysGameFromServer(reqDate) {
 
 function getTodaysGamesFromDB(reqDate) {
     return new Promise((resolve) => {
-        let date = moment(new Date())
+        let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
-        resolve(fetch(`https://highlightstowatch.firebaseio.com/matches/${date}.json`).then(data => data.json()).then((data) => {
+        resolve(fetch(`https://mycarservicebook.firebaseio.com/matches/${date}.json`).then(data => data.json()).then((data) => {
             return data
         }))
     })
