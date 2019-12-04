@@ -29,6 +29,12 @@ import { NavLink } from 'react-router-dom'
         <NavLink activeClassName='activeLeague' to='/league/germany'>
           <img src={require('../../leagues/bundesliga.png')} className='league-logo' alt='Bundesliga' />
         </NavLink>
+        <NavLink activeClassName='activeLeague' to='/league/champions%20league'>
+          <img src={require('../../leagues/championsleague.png')} className='league-logo' alt='Champions league' />
+        </NavLink>
+        <NavLink activeClassName='activeLeague' to='/league/europa%20league'>
+          <img src={require('../../leagues/leagueeurope.png')} className='league-logo' alt='League Europe' />
+        </NavLink>
         
         <p className='info-text'>and many more</p>
         </div>
@@ -40,7 +46,8 @@ import { NavLink } from 'react-router-dom'
         <NavLink to='/league/france'><img src={require('../../leagues/ligue1.png')} className='league-logo' alt='Ligue1' /></NavLink>
         <NavLink to='/league/italy'><img src={require('../../leagues/seriea.png')} className='league-logo' alt='SerieA' /></NavLink>
         <NavLink to='/league/germany'><img src={require('../../leagues/bundesliga.png')} className='league-logo' alt='Bundesliga' /></NavLink>
-        <NavLink to='/league/denmark'><img src={require('../../leagues/danishleague.png')} className='league-logo' alt='DanishLeague' /></NavLink>
+        <NavLink to='/league/champions%20league'><img src={require('../../leagues/championsleague.png')} className='league-logo' alt='Champions league' /></NavLink>
+        <NavLink to='/league/europa%20league'><img src={require('../../leagues/leagueeurope.png')} className='league-logo' alt='League Europe' /></NavLink>
         <p className='info-text'>and many more</p>
         </div>
         </Navbar.Collapse>

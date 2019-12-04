@@ -32,57 +32,57 @@ export default class Lineup extends Component {
         
         let players = []
 
-        players.push(
-            <ListGroup.Item key={`l_0`}>
-                <div className='lineup-home'>Tactic {this.props.gameInfo["f1"]}</div>
-                <div className='lineup-away'>Tactic {this.props.gameInfo["f2"]}</div>
-            </ListGroup.Item>
+        if (this.props.gameInfo["l1"].length > 0 && this.props.gameInfo["l2"].length > 0) {
+            players.push(
+                <ListGroup.Item key={`l_0`}>
+                    <div className='lineup-home'>Tactic {this.props.gameInfo["f1"]}</div>
+                    <div className='lineup-away'>Tactic {this.props.gameInfo["f2"]}</div>
+                </ListGroup.Item>
             )   
-
+            for (let i = 0; i < 11; i++) {
+                let playerHome = this.props.gameInfo["l1"][i];
+                let playerAway = this.props.gameInfo["l2"][i];  
+                let homeHasYellowCard = false
+                let awayHasYellowCard = false
+    
+                if (playerHome != null && playerAway != null)     {
+                    if (yellowCardsHome.includes(playerHome.n)) {
+                        homeHasYellowCard = true;
+                    }
         
-            
-        for (let i = 0; i < 11; i++) {
-            let playerHome = this.props.gameInfo["l1"][i];
-            let playerAway = this.props.gameInfo["l2"][i];  
-            let homeHasYellowCard = false
-            let awayHasYellowCard = false
-
-            if (playerHome != null && playerAway != null)     {
-                if (yellowCardsHome.includes(playerHome.n)) {
-                    homeHasYellowCard = true;
-                }
-    
-                if (yellowCardsAway.includes(playerAway.n)) {
-                    awayHasYellowCard = true;
-                }
-    
-                let homeHasRedCard = false
-                let awayHasRedCard = false
-    
-                if (redCardsHome.includes(playerHome.n)) {
-                    homeHasRedCard = true;
-                }
-    
-                if (redCardsAway.includes(playerAway.n)) {
-                    awayHasRedCard = true;
-                }
-                players.push(
-                    <ListGroup.Item key={`l_${i+1}`}>
-                        <div className='lineup-home'>
-                            <span className='player-number'>{playerHome.nm}.</span>
-                            {playerHome.n}
-                            {homeHasYellowCard ? (<span className='yellow-card'></span>) : "" }
-                            {homeHasRedCard ? (<span className='red-card'></span>) : "" }
+                    if (yellowCardsAway.includes(playerAway.n)) {
+                        awayHasYellowCard = true;
+                    }
+        
+                    let homeHasRedCard = false
+                    let awayHasRedCard = false
+        
+                    if (redCardsHome.includes(playerHome.n)) {
+                        homeHasRedCard = true;
+                    }
+        
+                    if (redCardsAway.includes(playerAway.n)) {
+                        awayHasRedCard = true;
+                    }
+                    players.push(
+                        <ListGroup.Item key={`l_${i+1}`}>
+                            <div className='lineup-home'>
+                                <span className='player-number'>{playerHome.nm}.</span>
+                                {playerHome.n}
+                                {homeHasYellowCard ? (<span className='yellow-card'></span>) : "" }
+                                {homeHasRedCard ? (<span className='red-card'></span>) : "" }
+                                </div>
+                            <div className='lineup-away'>
+                                {awayHasYellowCard ? (<span className='yellow-card'></span>) : "" }
+                                {awayHasRedCard ? (<span className='red-card'></span>) : "" }
+                                {playerAway.n}
+                                <span className='player-number'>{playerAway.nm}.</span>
                             </div>
-                        <div className='lineup-away'>
-                            {awayHasYellowCard ? (<span className='yellow-card'></span>) : "" }
-                            {awayHasRedCard ? (<span className='red-card'></span>) : "" }
-                            {playerAway.n}
-                            <span className='player-number'>{playerAway.nm}.</span>
-                        </div>
-                    </ListGroup.Item>
-                    )    
-            }
+                        </ListGroup.Item>
+                        )    
+                }
+        }
+        
         }
 
         let substitutes = []
@@ -100,7 +100,7 @@ export default class Lineup extends Component {
         }
         return (
             <div className='lineup'>
-                <Accordion onClick={this.showEvent.bind(this)} className='mt-2'>
+                <Accordion onClick={this.showEvent.bind(this)} className='mt-2' defaultActiveKey={this.props.isLivePage ? "match-lineup" : ""}>
                     <Card className='bordered-card'>
                     <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="match-lineup">
@@ -109,13 +109,22 @@ export default class Lineup extends Component {
                     </Card.Header>
                     <Accordion.Collapse eventKey="match-lineup">
                         <Card.Body>
-                        <ListGroup variant="flush">
-                        {players}
-                        </ListGroup>
-                        <h4 className='mt-3'>Substitutes</h4>
-                        <ListGroup variant="flush">
-                        {substitutes}
-                        </ListGroup>
+                            {players.length == 0 ? (
+                                <ListGroup variant="flush">
+                                    No data
+                                    </ListGroup>
+                            ) : (
+                            <React.Fragment>
+                                <ListGroup variant="flush">
+                                {players}
+                            </ListGroup>
+                            <h4 className='mt-3'>Substitutes</h4>
+                            <ListGroup variant="flush">s
+                                {substitutes}
+                            </ListGroup>
+                            </React.Fragment>
+                            )}
+                        
                         
                         </Card.Body>
                     </Accordion.Collapse>

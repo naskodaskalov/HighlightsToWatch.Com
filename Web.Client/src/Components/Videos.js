@@ -9,6 +9,7 @@ import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
 import Livescores from './Livescores'
+import UpcomingGames from './UpcomingGames'
 
 import GlobalHelpers from './Common/Helpers'
 
@@ -264,7 +265,8 @@ export default class Videos extends Component {
         <div className='column-container'>
         <div className='left-side-container'>
         <PopularVideos />
-        <Livescores />
+        {/* <Livescores /> */}
+        <UpcomingGames />
         </div>
         <div className='videos-container'>
         <Row className=''>

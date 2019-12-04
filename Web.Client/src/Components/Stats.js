@@ -33,7 +33,7 @@ export default class Stats extends Component {
 
     return (
         <div>
-            <Accordion onClick={this.showEvent.bind(this)} className='mt-2'>
+            <Accordion onClick={this.showEvent.bind(this)} className='mt-2' defaultActiveKey={this.props.isLivePage ? "match-statistic" : ""}>
                 <Card className='bordered-card'>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="match-statistic">
@@ -63,6 +63,11 @@ export default class Stats extends Component {
                         if (statType === "ShotOnGoal") {
                             statType = "Shot on target"
                         }
+
+                        if (statType === "CompletedPasses") {
+                            statType = "Completed Passes"
+                        }
+                        
                         let valueHome = statType === "Possession" ? st["v1"] + " %" : st["v1"]
                         let valueAway = statType === "Possession" ? st["v2"] + " %" : st["v2"]
 

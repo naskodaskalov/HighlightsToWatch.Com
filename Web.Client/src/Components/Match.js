@@ -139,7 +139,7 @@ export default class Match extends Component {
                 borderRadius={10} />
           </FacebookShareButton>
           <span className="match-date">
-            <Moment format="DD.MM.YYYY HH:MM">{gameDetails.date}</Moment>
+            <Moment format="DD.MM.YYYY HH:mm">{gameDetails.date}</Moment>
         </span>
 
         <div className="league-name">League: {gameDetails.competition.name}</div>

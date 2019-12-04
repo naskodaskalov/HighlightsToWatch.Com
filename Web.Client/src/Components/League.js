@@ -201,9 +201,9 @@ export default class League extends Component {
                     />
                 </div>
                 <div className="column-container">
-                    <div className='left-side-container'>
+                    {/* <div className='left-side-container'>
                         <Fixtures leaguename={league} />
-                    </div>
+                    </div> */}
                     <div className='videos-container container pl-4 pr-4'>
                         <Row>
                             <h4 className='mb-4'>Highlights from {league}</h4>
