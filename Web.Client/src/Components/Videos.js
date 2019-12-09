@@ -8,7 +8,6 @@ import Search from './Common/Search'
 import axios from 'axios'
 import 'moment-timezone'
 import * as moment from 'moment'
-import Livescores from './Livescores'
 import UpcomingGames from './UpcomingGames'
 
 import GlobalHelpers from './Common/Helpers'

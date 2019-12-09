@@ -11,6 +11,7 @@ import Helmet from 'react-helmet'
 import '../App.css'
 import Lineup from './Lineup'
 import Stats from './Stats'
+import LiveStandings from './LiveStandings'
 import UpcomingGames from './UpcomingGames'
 
 import GlobalHelpers from './Common/Helpers'
@@ -25,6 +26,8 @@ export default class Match extends Component {
             homeTeam: this.props.match.params.game.split("-")[0].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-'),
             awayTeam: this.props.match.params.game.split("-")[1].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-'),
             gameDetails: [],
+            competition: '',
+            currentTime: 0,
             isLoading: true
         }
     }
@@ -39,14 +42,15 @@ export default class Match extends Component {
     }
 
     getData(newProps) {
-        
         this.getLiveGameData(newProps).then((data) => {
             if (data.error.length > 0) {
                 console.error(data.error)
             } else {
                 this.setState({
                     isLoading: false,
-                    gameDetails: data.response
+                    currentTime: data.currentTime,
+                    gameDetails: data.response,
+                    competition: data.response.cn
                 })
             }
         })
@@ -71,6 +75,7 @@ export default class Match extends Component {
                 this.setState({
                     match: newProps.match.params.game,
                     isLoading: true,
+                    isTheGameLive: false,
                     homeTeam: newProps.match.params.game.split("-")[0].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-'),
                     awayTeam: newProps.match.params.game.split("-")[1].trim().replace(' ', '-').replace(' ', '-').replace(' ', '-').replace(' ', '-')})
             }
@@ -102,6 +107,8 @@ export default class Match extends Component {
             )
         }
         let gameDetails = this.state.gameDetails
+        let homeTeamName = gameDetails.s1
+        let awayTeamName = gameDetails.s2
         let fullUrl = window.location.href
         let date = moment.unix(gameDetails.dt).format("DD.MM.YYYY HH:mm")
         return (
@@ -144,14 +151,22 @@ export default class Match extends Component {
                     <div className="league-name">League: {gameDetails.cn}</div>
                     <Stats
                         isLivePage="true"
+                        fullDetails={gameDetails}
                         scoreHome={gameDetails["sc1"]}
                         scoreAway={gameDetails["sc2"]}
                         gameEvents={gameDetails["ev"]}
                         gameInfo={gameDetails["st"]}
+                        currentTime={this.state.currentTime}
                     />
                     <Lineup
                         isLivePage="true"
                         gameInfo={gameDetails}
+                    />
+                    <LiveStandings
+                        isLivePage="true"
+                        competition={this.state.competition}
+                        homeTeam={homeTeamName}
+                        awayTeam={awayTeamName}
                     />
                     </div>
                 </div>

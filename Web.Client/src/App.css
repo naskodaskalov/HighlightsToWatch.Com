@@ -324,6 +324,41 @@ nav {
   padding-top: 12px;
 }
 
+.goal {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+.penalty {
+  width: 30px;
+}
+
+.match-event {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.match-event .player-name {
+  width: 30%;
+}
+
+.match-event .player-name:first-of-type {
+  text-align: right;
+}
+
+.match-event .player-name:last-of-type {
+  text-align: left;
+}
+
+.match.event .minutes {
+  width: 10%;
+}
+
 .yellow-card {
   width: 13px;
   height: 20px;
@@ -331,6 +366,17 @@ nav {
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
+  margin-right: 5px;
+}
+
+.second-yellow-card {
+  width: 13px;
+  height: 20px;
+  background: #cf0016;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: -13px;
+  margin-top: -5px;
   margin-right: 5px;
 }
 
@@ -342,6 +388,18 @@ nav {
   vertical-align: middle;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.middle-box {
+  display: inline-block;
+}
+
+.status {
+  position: absolute;
+  font-size: 20px;
+  top: 80px;
+  left: 49%;
+  opacity: 0.6;
 }
 
 .card-header:hover {
@@ -387,12 +445,20 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
-.table td,
+.currentTeam {
+  color: white;
+  background-color: #061454 !important;
+}
+.currentTeam:hover {
+  color: white !important;
+}
+
+/* .table td,
 .table th {
   padding: 2px;
   font-size: 14px;
   border-top: 3px solid #061454;
-}
+} */
 
 .videoimg {
   width: 100%;

@@ -3,6 +3,7 @@ import { Card, Accordion, Button, Spinner, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import moment from 'moment'
+import GlobalHelpers from './Common/Helpers'
 
 export default class UpcomingGames extends Component {
   constructor (props) {
@@ -19,8 +20,9 @@ export default class UpcomingGames extends Component {
     this.getUpcomingGames().then((response) => {
       let todayDate = moment().format("YYYY-MM-DD");
       let games = response.response.g.filter(m => moment.unix(m.dt).format("YYYY-MM-DD") === todayDate)
+      let upcomingGames = GlobalHelpers.SortArrayDesc(games, "dt")
       this.setState({
-        upcomingGames: games,
+        upcomingGames: upcomingGames,
         leagues: response.response.c,
         isContentLoaded: true
       })

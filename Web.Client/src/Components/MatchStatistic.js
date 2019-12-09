@@ -5,6 +5,7 @@ import axios from 'axios'
 import '../App.css'
 import Stats from './Stats'
 import Lineup from './Lineup'
+import LiveStandings from './LiveStandings'
 
 export default class MatchStatistic extends Component {
     constructor (props) {
@@ -14,6 +15,8 @@ export default class MatchStatistic extends Component {
         homeTeam: this.props.homeTeam,
         awayTeam: this.props.awayTeam,
         isLoading: true,
+        currentTime: 0,
+        competition: '',
         stats: []
         }
     }
@@ -23,7 +26,9 @@ export default class MatchStatistic extends Component {
         .then((response) => {
                 this.setState({
                     stats: response.response,
-                    isLoading: false
+                    currentTime: response.currentTime,
+                    isLoading: false,
+                    competition: response.response.cn
                 })
         })
     }
@@ -58,10 +63,14 @@ export default class MatchStatistic extends Component {
         )
         }
         let gameDetails = this.state.stats
-        
+        let homeTeamName = gameDetails.s1
+        let awayTeamName = gameDetails.s2
+
         return (
             <div>
             <Stats
+                fullDetails={gameDetails}
+                currentTime={this.state.currentTime}
                 scoreHome={gameDetails["sc1"]}
                 scoreAway={gameDetails["sc2"]}
                 gameEvents={gameDetails["ev"]}
@@ -72,6 +81,11 @@ export default class MatchStatistic extends Component {
                 gameInfo={gameDetails}
             />
             ) : ""}
+            <LiveStandings
+                competition={this.state.competition}
+                homeTeam={homeTeamName}
+                awayTeam={awayTeamName}
+            />
             </div>
         )
 
