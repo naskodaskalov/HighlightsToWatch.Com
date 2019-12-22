@@ -87,7 +87,9 @@ export default class Videos extends Component {
 
           for (let t = 0; t < Object.values(currentDate).length; t++) {
             const p = Object.values(currentDate)[t];
-            games.push(p)
+            if (p.side1 != null && p.side2 != null) {
+              games.push(p)
+            }
           } 
         }
 
@@ -197,14 +199,18 @@ export default class Videos extends Component {
 
   render() {
     const videos = this.state.videosOnPage
-    let videosData = videos.map((video, index) => (
-      <MatchContainer
-        {...this.props}
-        key={index}
-        video={video}
-        handleClickEvent={this.showVideo}
-      />
-    ))
+    let videosData = videos.map((video, index) => {
+      if (video.side1 != null && video.side2 != null) {
+        return (
+          <MatchContainer
+            {...this.props}
+            key={index}
+            video={video}
+            handleClickEvent={this.showVideo}
+          />
+        )
+      }
+    })
 
     let counter = Math.ceil(this.state.videos.length / 10)
     let pagination = []

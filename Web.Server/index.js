@@ -42,7 +42,6 @@ app.get('/', function (req, res) {
     Promise.all([getTodaysGameFromServer(), getTodaysGamesFromDB()]).then(response => {
         gamesFromServer = response[0]
         gamesFromDb = response[1]
-        
         for (let i = 0; i < gamesFromServer.length; i++) {
             const element = gamesFromServer[i];
             games.push(element)
@@ -56,7 +55,6 @@ app.get('/', function (req, res) {
     }).then((reqDate) => {
         let a = games
         let b = gamesDB
-
         let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
@@ -87,16 +85,24 @@ app.get('/', function (req, res) {
     }).then(() => {
         let a = games
         let b = gamesDB
-
+        
         if (gamesDB.length == 0) {
             return
         }
-        let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => obj1.videos.length !== obj2.videos.length)), b.filter(obj2 => a.every(obj1 => obj2.videos.length !== obj1.videos.length)));
-
+        let missingGames = [].concat(a.filter(obj1 => b.every(obj2 => {
+            if (obj1.videos != null && obj2.videos != null) {
+                return obj1.videos.length !== obj2.videos.length
+            }
+        })), b.filter(obj2 => a.every(obj1 => {
+            if (obj1.videos != null && obj2.videos != null) {
+                return obj2.videos.length !== obj1.videos.length
+            }
+        })));
         let date = moment(new Date()).tz("Europe/Sofia")
             .subtract(1, 'days')
             .format("MM-DD-YYYY")
         addedGames = missingGames.length
+        
         for (let i = 0; i < missingGames.length; i++) {
             const element = missingGames[i];
             let key = ''
