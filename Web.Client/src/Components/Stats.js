@@ -77,17 +77,17 @@ export default class Stats extends Component {
                             <div className='player-name'>
                             {ev.s === 1 ? ev.n : ""}
                             {ev.s === 1 && ev.t === "goal"
-                            ? (<img className='goal' src={require('../Images/goal.png')}/>)
-                            : ev.s === 1 && ev.t === "pen" ? (<img className='goal penalty' src={require('../Images/penalty.png')}/>)
-                            : ev.s === 1 && ev.t === "og" ? (<img className='goal' src={require('../Images/owngoal.png')}/>)
+                            ? (<img className='goal' src={require('../Images/goal.png')} alt='Goal' />)
+                            : ev.s === 1 && ev.t === "pen" ? (<img className='goal penalty' src={require('../Images/penalty.png')} alt='Penalty goal' />)
+                            : ev.s === 1 && ev.t === "og" ? (<img className='goal' src={require('../Images/owngoal.png')} alt='Own goal' />)
                             : (<span></span>)}
                             </div>
                             <div className='minutes'>{ev.m}'</div>
                             <div className='player-name'>
                             {ev.s === 2 && ev.t === "goal"
-                            ? (<img className='goal' src={require('../Images/goal.png')}/>)
-                            : ev.s === 2 && ev.t === "pen" ? (<img className='goal penalty' src={require('../Images/penalty.png')}/>)
-                            : ev.s === 2 && ev.t === "og" ? (<img className='goal' src={require('../Images/owngoal.png')}/>)
+                            ? (<img className='goal' src={require('../Images/goal.png')} alt='Goal' />)
+                            : ev.s === 2 && ev.t === "pen" ? (<img className='goal penalty' src={require('../Images/penalty.png')} alt='Penalty goal' />)
+                            : ev.s === 2 && ev.t === "og" ? (<img className='goal' src={require('../Images/owngoal.png')} alt='Own goal' />)
                             : (<span></span>)}
                             {ev.s === 2 ? ev.n : ""}
                             </div>

@@ -5,11 +5,11 @@ import CountrySelector from './CountrySelector'
 import Search from './Common/Search'
 import { Row, Accordion,  Spinner } from 'react-bootstrap'
 import VideoModal from './VideoModal'
+import UpcomingGames from './UpcomingGames'
 import 'moment-timezone'
 import * as moment from 'moment'
 import axios from 'axios'
 import Helmet from 'react-helmet'
-import Fixtures from './Fixtures'
 import GlobalHelpers from './Common/Helpers'
 
 export default class League extends Component {

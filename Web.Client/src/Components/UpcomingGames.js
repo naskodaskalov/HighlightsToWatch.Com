@@ -18,8 +18,8 @@ export default class UpcomingGames extends Component {
 
   componentDidMount () {
     this.getUpcomingGames().then((response) => {
-      let todayDate = moment().format("YYYY-MM-DD");
-      let games = response.response.g.filter(m => moment.unix(m.dt).format("YYYY-MM-DD") === todayDate)
+      let todayDate = moment().unix();
+      let games = response.response.g.filter(m => m.dt >= todayDate || m.s === "1T" || m.s === "2T" || m.s === "HT")
       let upcomingGames = GlobalHelpers.SortArrayDesc(games, "dt")
       this.setState({
         upcomingGames: upcomingGames,

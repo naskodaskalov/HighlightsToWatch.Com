@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Accordion, Button, Spinner, ListGroup, Table } from 'react-bootstrap'
+import { Card, Accordion, Button, Spinner, Table } from 'react-bootstrap'
 import axios from 'axios'
 
 export default class LiveStandings extends Component {

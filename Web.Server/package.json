@@ -6,6 +6,7 @@
   "author": "ND",
   "license": "MIT",
   "dependencies": {
+    "brainjs": "^0.7.4",
     "express": "4.17.1",
     "firebase": "7.2.0",
     "moment": "2.24.0",

@@ -126,14 +126,14 @@ export default class Lineup extends Component {
                                 {homeHasYellowCard ? (<span className='yellow-card'></span>) : "" }
                                 {homeHasSecondYellowCard ? (<span className='second-yellow-card'></span>) : "" }
                                 {homeHasRedCard ? (<span className='red-card'></span>) : "" }
-                                {homeGoal ? (<img className='goal' src={require('../Images/goal.png')}/>) : "" }
-                                {homeOwnGoal ? (<img className='goal' src={require('../Images/owngoal.png')}/>) : "" }
-                                {homePenalty ? (<img className='goal penalty' src={require('../Images/penalty.png')}/>) : "" }
+                                {homeGoal ? (<img className='goal' src={require('../Images/goal.png')} alt='Goal' />) : "" }
+                                {homeOwnGoal ? (<img className='goal' src={require('../Images/owngoal.png')} alt='Own goal' />) : "" }
+                                {homePenalty ? (<img className='goal penalty' src={require('../Images/penalty.png')} alt='Penalty goal' />) : "" }
                                 </div>
                             <div className='lineup-away'>
-                                {awayPenalty ? (<img className='goal penalty' src={require('../Images/penalty.png')}/>) : "" }
-                                {awayGoal ? (<img className='goal' src={require('../Images/goal.png')}/>) : "" }
-                                {awayOwnGoal ? (<img className='goal' src={require('../Images/owngoal.png')}/>) : "" }
+                                {awayPenalty ? (<img className='goal penalty' src={require('../Images/penalty.png')} alt='Penalty goal' />) : "" }
+                                {awayGoal ? (<img className='goal' src={require('../Images/goal.png')} alt='Goal' />) : "" }
+                                {awayOwnGoal ? (<img className='goal' src={require('../Images/owngoal.png')} alt='Own goal' />) : "" }
                                 {awayHasYellowCard ? (<span className='yellow-card'></span>) : "" }
                                 {awayHasSecondYellowCard ? (<span className='second-yellow-card'></span>) : "" }
                                 {awayHasRedCard ? (<span className='red-card'></span>) : "" }
@@ -171,7 +171,7 @@ export default class Lineup extends Component {
                     </Card.Header>
                     <Accordion.Collapse eventKey="match-lineup">
                         <Card.Body>
-                            {players.length == 0 ? (
+                            {players.length === 0 ? (
                                 <ListGroup variant="flush">
                                     No data
                                     </ListGroup>
